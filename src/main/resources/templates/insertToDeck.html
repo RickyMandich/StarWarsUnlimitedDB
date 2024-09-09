@@ -5,12 +5,12 @@
         <title>Inserto to Deck</title>
     </head>
     <body>
-        <form action="/InsertToDeck/operation">
+        <form action="/insertToDeck/operation">
             Inserisci il nome del Deck: <input type="text" name="mazzo" placeholder="Nome Deck">
             <br>
-            Inserisci l'acronimo del set: <input type="text" name="espansione" placeholder="Set">
+            Inserisci l'acronimo del set: <input type="text" minlength="3" maxlength="3" name="espansione" placeholder="Set">
             <br>
-            Inserisci il numero della carta: <input type="text" name="nr" placeholder="Nome Deck">
+            Inserisci il numero della carta: <input type="number" name="nr" placeholder="Nome Deck">
             <br>
             <input type="submit" value="submit">
         </form>

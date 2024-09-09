@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+      <meta charset="UTF-8">
+      <title>InsertToDB</title>
+  </head>
+  <body>
+    <form action="insertToDB/operation">
+        aspetto:
+        <select name="aspettoPrimario">
+            <option value="">--seleziona--</option>
+            <option value="Rosso">Rosso</option>
+            <option value="Giallo">Giallo</option>
+            <option value="Verde">Verde</option>
+            <option value="Blu">Blu</option>
+            <option value="Chiaro">Chiaro</option>
+            <option value="Scuro">Scuro</option>
+        </select>
+        <select name="aspettoSecondario">
+            <option value="">--seleziona--</option>
+            <option value="Rosso">Rosso</option>
+            <option value="Giallo">Giallo</option>
+            <option value="Verde">Verde</option>
+            <option value="Blu">Blu</option>
+            <option value="Chiaro">Chiaro</option>
+            <option value="Scuro">Scuro</option>
+        </select>
+        <br>
+        <input type="text" onkeyup="if (!/^[a-z0-9]*$/i.test(this.value)) alert('err')">
+    </form>
+  </body>
+</html>
