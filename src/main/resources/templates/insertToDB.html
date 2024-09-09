@@ -6,27 +6,75 @@
   </head>
   <body>
     <form action="insertToDB/operation">
-        aspetto:
-        <select name="aspettoPrimario">
-            <option value="">--seleziona--</option>
-            <option value="Rosso">Rosso</option>
-            <option value="Giallo">Giallo</option>
-            <option value="Verde">Verde</option>
-            <option value="Blu">Blu</option>
-            <option value="Chiaro">Chiaro</option>
-            <option value="Scuro">Scuro</option>
-        </select>
-        <select name="aspettoSecondario">
-            <option value="">--seleziona--</option>
-            <option value="Rosso">Rosso</option>
-            <option value="Giallo">Giallo</option>
-            <option value="Verde">Verde</option>
-            <option value="Blu">Blu</option>
-            <option value="Chiaro">Chiaro</option>
-            <option value="Scuro">Scuro</option>
-        </select>
+        <div id="nome">
+            <input type="checkbox" name="unica"> unica
+            <br>
+            nome: <input type="text" name="nome" placeholder="nome">
+            <br>
+            titolo: <input type="text" name="titolo" placeholder="titolo">
+            <br>
+        </div>
+        <hr>
+        <div id="set">
+            set:
+            <select name="espansione">
+                <option value="" disabled selected> --seleziona-- </option>
+                <option value="SOR"> spark of rebellion </option>
+                <option value="SHD"> shadow of the galaxy </option>
+            </select>
+        </div>
+        <div id="type">
+            tipo:
+            <select name="tipo">
+                <option value="" disabled selected> --seleziona-- </option>
+                <option> leader </option>
+                <option> base </option>
+                <option> unità </option>
+                <option> evento </option>
+                <option> miglioria </option>
+                <option> token </option>
+            </select>
+        </div>
+        <hr>
+        <div id="tratti">
+            tratti:
+            <table>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="tratti[]" value="bassifondi"> bassifondi <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="tratti[]" value="forza"> forza <br>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <hr>
+        <div id="aspetto">
+            aspetto:
+            <select name="aspettoPrimario">
+                <option value="">--seleziona--</option>
+                <option>Rosso</option>
+                <option>Giallo</option>
+                <option>Verde</option>
+                <option>Blu</option>
+                <option>Chiaro</option>
+                <option>Scuro</option>
+            </select>
+            <select name="aspettoSecondario">
+                <option value="">--seleziona--</option>
+                <option>Rosso</option>
+                <option>Giallo</option>
+                <option>Verde</option>
+                <option>Blu</option>
+                <option>Chiaro</option>
+                <option>Scuro</option>
+            </select>
+        </div>
         <br>
-        <input type="text" onkeyup="if (!/^[a-z0-9]*$/i.test(this.value)) alert('err')">
+        <input type="text" onkeyup="this.value = this.value.replace(/;/g, ''); if (/;/.test(this.value)) alert('Errore: punto e virgola non consentito')">
     </form>
   </body>
 </html>
