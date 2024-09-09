@@ -10,3 +10,5 @@ try (Connection conn = DriverManager.getConnection("jdbc:mysql://IP_SERVER:PORTA
     throw new RuntimeException(e);
 }
 ```
+
+#### prima carta mancante nell'aggiungere i tratti: SOR_041
