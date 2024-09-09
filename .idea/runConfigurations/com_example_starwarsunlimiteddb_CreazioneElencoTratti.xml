@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="com.example.starwarsunlimiteddb.CreazioneElencoTratti" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="com.example.starwarsunlimiteddb.CreazioneElencoTratti" />
+    <module name="StarWarsUnlimitedDB" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

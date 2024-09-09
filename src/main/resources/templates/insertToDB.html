@@ -39,14 +39,11 @@
         <div id="tratti">
             tratti:
             <table>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="tratti[]" value="bassifondi"> bassifondi <br>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="tratti[]" value="forza"> forza <br>
+                <tr th:each="rigaTratti:${tratti}">
+                    <td th:each="tratto:${rigaTratti}">
+                        <input type="checkbox" name="tratti[]" value="${tratto}">
+                        <p th:text="${tratto}" style="display: inline;"></p>
+                        <br>
                     </td>
                 </tr>
             </table>

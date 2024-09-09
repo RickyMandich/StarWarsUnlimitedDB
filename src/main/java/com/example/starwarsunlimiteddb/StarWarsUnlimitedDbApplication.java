@@ -15,8 +15,67 @@ public class StarWarsUnlimitedDbApplication {
 
     @GetMapping("/insertToDB")
 	public ModelAndView insertToDB(){
-		return new ModelAndView("insertToDB");
+        String[][] tratti = getFile("tratti.txt");
+        ModelAndView insertToDB = new ModelAndView("insertToDB");
+        insertToDB.addObject("tratti", tratti);
+        return insertToDB;
 	}
+
+    public String[][] getFile(String fileName){
+        java.io.BufferedReader reader = null;
+        try{
+            String line;
+            reader = new java.io.BufferedReader(new java.io.FileReader(fileName));
+            String[] trattiLine = new String[0];
+            while((line = reader.readLine()) != null){
+                trattiLine = aggiungiTratto(trattiLine, line);
+                System.out.println(line);
+            }
+            String[][] tratti = new String[0][10];
+            for(String[] row: tratti){
+                for(String tratto:row){
+                    tratti = add(tratti, tratto);
+                }
+            }
+            return tratti;
+        }catch (java.io.IOException e){
+            return new String[0][0];
+        }finally {
+            try {
+                reader.close();
+            } catch (java.io.IOException | NullPointerException ignore) {}
+        }
+    }
+
+    public String[][] add(String[][] tratti, String tratto){
+        if(tratti.length == 0){
+            tratti = new String[1][10];
+            tratti[0][0] = tratto;
+        }else if(tratti[tratti.length-1][9] == null){
+            for(int i=0;i<tratti[tratti.length-1].length;i++){
+                if(tratti[tratti.length-1][i] == null){
+                    tratti[tratti.length-1][i] = tratto;
+                }
+            }
+        }else{
+            String[][] newTratti = new String[tratti.length+1][10];
+            for(int i=0;i<tratti.length;i++){
+                for(int j=0;j<tratti[i].length;j++){
+                    newTratti[i][j] = tratti[i][j];
+                }
+            }
+            newTratti[tratti.length][0] = tratto;
+            tratti = newTratti;
+        }
+        return tratti;
+    }
+
+    private String[] aggiungiTratto(String[] oldTratti, String line){
+        String[] newTratti = new String[oldTratti.length+1];
+        System.arraycopy(oldTratti, 0, newTratti, 0, oldTratti.length);
+        newTratti[oldTratti.length] = line;
+        return newTratti;
+    }
 
     @GetMapping("/insertToDB/operation")
     public ModelAndView insertToDBOperation(){
