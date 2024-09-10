@@ -3,11 +3,9 @@ package com.example.starwarsunlimiteddb;
 public class CreazioneElencoTratti{
     public static void main(String[] args) {
         /*
-        String[][] tratti = getFileMatrice("tratti.txt");
-        System.out.println("fuori print prima");
-        print(tratti);
-        System.out.println("fuori print dopo");
-        /**/
+        todo:
+        - inserire tutti i tratti
+         */
         String[] tratti = getFile("tratti.txt");
         try{
             tratti = input(tratti);
