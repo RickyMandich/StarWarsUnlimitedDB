@@ -1,18 +1,31 @@
+arma
 bassifondi
 caccia
 cacciatore di taglie
 camminatore
+condizione
+corazzato
+creatura
+disastro
 droide
 forza
 imperiale
+innato
 inquisitore
+jedi
 mandaloriano
+margine
 nave ammiraglia
+oggetto
 ribelle
+scorta
 separatista
 sith
 soldato
+spada laser
 spectre
+tattica
+trasporto
 twi'lek
 ufficiale
 veicolo

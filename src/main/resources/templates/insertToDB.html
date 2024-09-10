@@ -3,7 +3,32 @@
   <head>
       <meta charset="UTF-8">
       <title>InsertToDB</title>
+      <script src="insertToDB.js"></script>
   </head>
+<!-- todo:
+     - fare il div abilità composto da:
+        - imboscata (checkbox)
+        - tenacia (checkbox)
+        - sopraffazione (checkbox)
+        - incursione (checkbox) (number)
+        - recupero (checkbox)  (number)
+        - sabotatore (checkbox)
+        - sentinella (checkbox)
+        - schermata (checkbox)
+        - contrabbando (checkbox) (text)
+        - quando giocata (checkbox) (text)
+        - taglia (checkbox) (text)
+        - quando sconfitta (checkbox) (text)
+        - quando attacca (checkbox) (text)
+        - descrizione evento (checkbox) (text)
+     - fare il div arena (select)
+     - fare il div stat composto da:
+        - costo (number)
+        - power (number)
+        - hp (number)
+     - fare rarità (select)
+     - fare artista (text)
+-->
   <body>
     <form action="insertToDB/operation">
         <div id="nome">
@@ -22,31 +47,6 @@
                 <option value="SOR"> spark of rebellion </option>
                 <option value="SHD"> shadow of the galaxy </option>
             </select>
-        </div>
-        <div id="type">
-            tipo:
-            <select name="tipo">
-                <option value="" disabled selected> --seleziona-- </option>
-                <option> leader </option>
-                <option> base </option>
-                <option> unità </option>
-                <option> evento </option>
-                <option> miglioria </option>
-                <option> token </option>
-            </select>
-        </div>
-        <hr>
-        <div id="tratti">
-            tratti:
-            <table>
-                <tr th:each="rigaTratti:${tratti}">
-                    <td th:each="tratto:${rigaTratti}">
-                        <input type="checkbox" name="tratti[]" value="${tratto}">
-                        <p th:text="${tratto}" style="display: inline;"></p>
-                        <br>
-                    </td>
-                </tr>
-            </table>
         </div>
         <hr>
         <div id="aspetto">
@@ -70,8 +70,56 @@
                 <option>Scuro</option>
             </select>
         </div>
-        <br>
+        <hr>
+        <div id="type">
+            tipo:
+            <select name="tipo">
+                <option value="" disabled selected> --seleziona-- </option>
+                <option> leader </option>
+                <option> base </option>
+                <option> unità </option>
+                <option> evento </option>
+                <option> miglioria </option>
+                <option> token </option>
+            </select>
+        </div>
+        <hr>
+        <div id="tratti">
+            tratti:
+            <input type="text" placeholder="filtro" id="filtroTratto" enterkeyhint="enter">
+            <input type="button" value="filtra" id="launchFiltro" onclick="filtra()">
+            <br>
+            <div>
+                <span class="tratto" th:each="tratto:${tratti}">
+                    <input type="checkbox" value="${tratto}" name="tratti[]"> <p th:text="${tratto}"></p>
+                </span>
+            </div>
+        </div>
+        <hr>
+        <div id="abilita">
+        </div>
         <input type="text" onkeyup="this.value = this.value.replace(/;/g, ''); if (/;/.test(this.value)) alert('Errore: punto e virgola non consentito')">
     </form>
   </body>
+    <style>
+        .tratto {
+            width: 100px;
+            padding: 5px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            vertical-align: top;
+            box-sizing: border-box;
+
+            border: 1px solid black;
+            background: rgb(0, 255, 0);
+            /**/
+        }
+
+        hr{
+            box-sizing: border-box;
+            border: 0.2px solid black;
+        }
+    </style>
 </html>

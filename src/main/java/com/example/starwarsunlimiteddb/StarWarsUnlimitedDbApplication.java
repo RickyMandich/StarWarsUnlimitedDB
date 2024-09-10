@@ -15,13 +15,13 @@ public class StarWarsUnlimitedDbApplication {
 
     @GetMapping("/insertToDB")
 	public ModelAndView insertToDB(){
-        String[][] tratti = getFile("tratti.txt");
+        String[] tratti = getFile("tratti.txt");
         ModelAndView insertToDB = new ModelAndView("insertToDB");
         insertToDB.addObject("tratti", tratti);
         return insertToDB;
 	}
 
-    public String[][] getFile(String fileName){
+    public String[] getFile(String fileName){
         java.io.BufferedReader reader = null;
         try{
             String line;
@@ -29,17 +29,10 @@ public class StarWarsUnlimitedDbApplication {
             String[] trattiLine = new String[0];
             while((line = reader.readLine()) != null){
                 trattiLine = aggiungiTratto(trattiLine, line);
-                System.out.println(line);
             }
-            String[][] tratti = new String[0][10];
-            for(String[] row: tratti){
-                for(String tratto:row){
-                    tratti = add(tratti, tratto);
-                }
-            }
-            return tratti;
+            return trattiLine;
         }catch (java.io.IOException e){
-            return new String[0][0];
+            return new String[0];
         }finally {
             try {
                 reader.close();
@@ -52,9 +45,11 @@ public class StarWarsUnlimitedDbApplication {
             tratti = new String[1][10];
             tratti[0][0] = tratto;
         }else if(tratti[tratti.length-1][9] == null){
-            for(int i=0;i<tratti[tratti.length-1].length;i++){
+            boolean daInserire = true;
+            for(int i=0;daInserire & i<tratti[tratti.length-1].length;i++){
                 if(tratti[tratti.length-1][i] == null){
                     tratti[tratti.length-1][i] = tratto;
+                    daInserire = false;
                 }
             }
         }else{
