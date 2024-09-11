@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3fa92e7b-e39b-42f7-b9e1-65ad84c61ce4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/runConfigurations/cmt_sh.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/main/resources/static/insertToDB.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/main/resources/static/insertToDB.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/insertToDB.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/main/resources/templates/insertToDB.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../tratti.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../tratti.txt" afterDir="false" />
@@ -12,21 +11,21 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2lvp56J8Rwpfo3QvHjLjTMMlArM" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -44,6 +43,7 @@
       <option name="presentableId" value="Default" />
       <updated>1726070218167</updated>
       <workItem from="1726070219272" duration="3000" />
+      <workItem from="1726070291439" duration="4000" />
     </task>
     <servers />
   </component>
