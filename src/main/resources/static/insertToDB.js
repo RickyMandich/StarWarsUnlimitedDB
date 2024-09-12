@@ -16,6 +16,18 @@ function filtra() {
     */
 }
 
+function toggleVisibilityInput(id){
+    if(document.getElementById(id).checked){
+        document.getElementById("valore"+id).style.display = "inline-block";
+    }else{
+        document.getElementById("valore"+id).style.display = "none";
+    }
+}
+
+addEventListener("DOMContentLoaded", (event)=>{
+    let check = document.getElementsByTagName("input:checkbox")
+});
+
 addEventListener("DOMContentLoaded", (event) => {
     let tratti = Array.from(document.getElementsByClassName("tratto"));
     let maxHeight = Math.max(...tratti.map(el => el.offsetHeight));

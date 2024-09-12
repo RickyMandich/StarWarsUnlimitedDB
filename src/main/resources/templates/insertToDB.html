@@ -36,7 +36,7 @@
             <br>
             nome: <input type="text" name="nome" placeholder="nome">
             <br>
-            titolo: <input type="text" name="titolo" placeholder="titolo">
+            Titolo: <input type="text" name="titolo" placeholder="titolo">
             <br>
         </div>
         <hr>
@@ -97,6 +97,70 @@
         </div>
         <hr>
         <div id="abilita">
+            <span>
+                <input type="checkbox" name="imboscata" id="imboscata">
+                Imboscata
+            </span>
+            <span>
+                <input type="checkbox" name="tenacia" id="tenacia">
+                Tenacia
+            </span>
+            <span>
+                <input type="checkbox" name="sopraffazione" id="sopraffazione">
+                Sopraffazione
+            </span>
+            <span>
+                <input type="checkbox" name="sabotatore" id="sabotatore">
+                Sabotatore
+            </span>
+            <span>
+                <input type="checkbox" name="sentinella" id="sentinella">
+                Sentinella
+            </span>
+            <span>
+                <input type="checkbox" name="schermata" id="schermata">
+                Schermata
+            </span>
+            <span>
+                <input type="checkbox" name="incursione" id="Incursione" onclick="toggleVisibilityInput('Incursione')">
+                Incursione
+                <input type="number" name="valoreIncursione" id="valoreIncursione" style="display: none">
+            </span>
+            <span>
+                <input type="checkbox" name="recupero" id="Recupero" onclick="toggleVisibilityInput('Recupero')">
+                Recupero
+                <input type="number" name="valoreRecupero" id="valoreRecupero" style="display: none">
+            </span>
+            <span>
+                <input type="checkbox" name="contrabbando" id="Contrabbando" onclick="toggleVisibilityInput('Contrabbando')">
+                Contrabbando
+                <input type="text" name="valoreContrabbando" id="valoreContrabbando" style="display: none">
+            </span>
+            <span>
+                <input type="checkbox" name="quandoGiocata" id="QuandoGiocata" onclick="toggleVisibilityInput('QuandoGiocata')">
+                Quando giocata
+                <input type="text" name="valoreQuandoGiocata" id="valoreQuandoGiocata" style="display: none">
+            </span>
+            <span>
+                <input type="checkbox" name="taglia" id="Taglia" onclick="toggleVisibilityInput('Taglia')">
+                Taglia
+                <input type="text" name="valoreTaglia" id="valoreTaglia" style="display: none">
+            </span>
+            <span>
+                <input type="checkbox" name="quandoSconfitta" id="QuandoSconfitta" onclick="toggleVisibilityInput('QuandoSconfitta')">
+                Quando sconfitta
+                <input type="text" name="valoreQuandoSconfitta" id="valoreQuandoSconfitta" style="display: none">
+            </span>
+            <span>
+                <input type="checkbox" name="quandoAttacca" id="QuandoAttacca" onclick="toggleVisibilityInput('QuandoAttacca')">
+                Quando attacca
+                <input type="text" name="valoreQuandoAttacca" id="valoreQuandoAttacca" style="display: none">
+            </span>
+            <span>
+                <input type="checkbox" name="descrizioneEvento" id="DescrizioneEvento" onclick="toggleVisibilityInput('DescrizioneEvento')">
+                Descrizione evento
+                <input type="text" name="valoreDescrizioneEvento" id="valoreDescrizioneEvento" style="display: none">
+            </span>
         </div>
         <input type="text" onkeyup="this.value = this.value.replace(/;/g, ''); if (/;/.test(this.value)) alert('Errore: punto e virgola non consentito')">
     </form>
@@ -119,7 +183,11 @@
 
         hr{
             box-sizing: border-box;
-            border: 0.2px solid black;
+            border: 1px solid black;
+        }
+
+        div#abilita>span{
+            display: block;
         }
     </style>
 </html>
