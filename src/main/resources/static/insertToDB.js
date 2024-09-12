@@ -21,8 +21,34 @@ function toggleVisibilityInput(id){
         document.getElementById("valore"+id).style.display = "inline-block";
     }else{
         document.getElementById("valore"+id).style.display = "none";
+
     }
 }
+
+function toggleVisibilityArena() {
+    console.log("Toggle visibility called");
+    let tipo = document.getElementById("selectTipo").value;
+    let arenaElement = document.getElementById("arena");
+
+    if (arenaElement) {
+        if (tipo === "unità") {
+            arenaElement.style.display = "block";
+        } else {
+            arenaElement.style.display = "none";
+        }
+    } else {
+        console.error("Element with id 'arena' not found");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    let selectTipo = document.getElementById("selectTipo");
+    if (selectTipo) {
+        selectTipo.addEventListener("change", toggleVisibilityArena);
+    } else {
+        console.error("Element with id 'selectTipo' not found");
+    }
+});
 
 addEventListener("DOMContentLoaded", (event)=>{
     let check = document.getElementsByTagName("input:checkbox")
