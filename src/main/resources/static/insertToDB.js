@@ -29,21 +29,26 @@ function toggleVisibilityFromTipo() {
     console.log(document.getElementById("selectTipo").value);
     switch (document.getElementById("selectTipo").value) {
         case "leader":
+            document.getElementById("arena").style.display = "none";
+            document.getElementById("selectArena").value = "terra";
             document.getElementById("costo").style.visibility = "visible";
             document.getElementById("vita").style.visibility = "visible";
             document.getElementById("potenza").style.visibility = "visible";
             break;
         case "base":
+            document.getElementById("arena").style.display = "none";
             document.getElementById("costo").style.visibility = "hidden";
             document.getElementById("vita").style.visibility = "visible";
             document.getElementById("potenza").style.visibility = "hidden";
             break;
         case "unità":
+            document.getElementById("arena").style.display = "block";
             document.getElementById("costo").style.visibility = "visible";
             document.getElementById("vita").style.visibility = "visible";
             document.getElementById("potenza").style.visibility = "visible";
             break;
         case "evento":
+            document.getElementById("arena").style.display = "none";
             document.getElementById("costo").style.visibility = "visible";
             document.getElementById("vita").style.visibility = "hidden";
             document.getElementById("potenza").style.visibility = "hidden";

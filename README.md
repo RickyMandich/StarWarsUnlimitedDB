@@ -2,7 +2,7 @@
 ``` java
 try (Connection conn = DriverManager.getConnection("jdbc:mysql://IP_SERVER:PORTA/DATABASE", "NOME_UTENTE", "PASSWORD")) {
     try (Statement stmt = conn.createStatement()) {
-        try (ResultSet rs = stmt.executeQuery("`comando MySeQueL`)) {
+        try (ResultSet rs = stmt.executeQuery("`comando MySeQueL`")) {
             --- blocco di istruzioni
         }
     }

@@ -16,6 +16,7 @@ jedi
 mandaloriano
 margine
 nave ammiraglia
+nevarro
 oggetto
 ribelle
 scorta

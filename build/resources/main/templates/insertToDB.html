@@ -28,6 +28,9 @@
                 <option value="SHD;2"> shadow of the galaxy </option>
                 <option value="TWI;3"> twilight of the republic </option>
             </select>
+            <br>
+            numero:
+            <input type="number" name="numero">
         <hr>
         </div>
         <div id="aspetto">
@@ -71,7 +74,7 @@
             <br>
             <div>
                 <span class="tratto" th:each="tratto:${tratti}">
-                    <input type="checkbox" value="${tratto}" name="tratti[]"> <p th:text="${tratto}"></p>
+                    <input type="checkbox" th:value="${tratto}" name="tratti[]"> <p th:text="${tratto}"></p>
                 </span>
             </div>
         <hr>
@@ -146,7 +149,7 @@
         </div>
         <div id="arena" style="display: none">
             arena:
-            <select name="arena">
+            <select name="arena" id="selectArena">
                 <option disabled selected value="">--seleziona--</option>
                 <option value="spazio">spazio</option>
                 <option value="terra">terra</option>
@@ -182,7 +185,7 @@
         </div>
         <div id="prezzo">
             prezzo:
-            <input type="number" name="prezzo" id="valorePrezzo">
+            <input type="number" step="0.01" name="prezzo" id="valorePrezzo">
         <hr>
         </div>
         <div id="artista">

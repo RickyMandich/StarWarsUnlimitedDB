@@ -13,33 +13,6 @@ import java.sql.*;
 @Controller
 public class StarWarsUnlimitedDbApplication {
 
-    @GetMapping("/insertToDB")
-	public ModelAndView insertToDB(){
-        String[] tratti = getFile("tratti.txt");
-        ModelAndView insertToDB = new ModelAndView("insertToDB");
-        insertToDB.addObject("tratti", tratti);
-        return insertToDB;
-	}
-
-    public String[] getFile(String fileName){
-        java.io.BufferedReader reader = null;
-        try{
-            String line;
-            reader = new java.io.BufferedReader(new java.io.FileReader(fileName));
-            String[] trattiLine = new String[0];
-            while((line = reader.readLine()) != null){
-                trattiLine = aggiungiTratto(trattiLine, line);
-            }
-            return trattiLine;
-        }catch (java.io.IOException e){
-            return new String[0];
-        }finally {
-            try {
-                reader.close();
-            } catch (java.io.IOException | NullPointerException ignore) {}
-        }
-    }
-
     public String[][] add(String[][] tratti, String tratto){
         if(tratti.length == 0){
             tratti = new String[1][10];
@@ -55,9 +28,7 @@ public class StarWarsUnlimitedDbApplication {
         }else{
             String[][] newTratti = new String[tratti.length+1][10];
             for(int i=0;i<tratti.length;i++){
-                for(int j=0;j<tratti[i].length;j++){
-                    newTratti[i][j] = tratti[i][j];
-                }
+                System.arraycopy(tratti[i], 0, newTratti[i], 0, tratti[i].length);
             }
             newTratti[tratti.length][0] = tratto;
             tratti = newTratti;
@@ -65,25 +36,179 @@ public class StarWarsUnlimitedDbApplication {
         return tratti;
     }
 
-    private String[] aggiungiTratto(String[] oldTratti, String line){
-        String[] newTratti = new String[oldTratti.length+1];
-        System.arraycopy(oldTratti, 0, newTratti, 0, oldTratti.length);
-        newTratti[oldTratti.length] = line;
-        return newTratti;
+    public String[] getFile(String fileName){
+        java.io.BufferedReader reader = null;
+        try{
+            String line;
+            reader = new java.io.BufferedReader(new java.io.FileReader(fileName));
+            String[] trattiLine = new String[0];
+            while((line = reader.readLine()) != null){
+                trattiLine = aggiungiCella(trattiLine, line);
+            }
+            return trattiLine;
+        }catch (java.io.IOException e){
+            return new String[0];
+        }finally {
+            try {
+                reader.close();
+            } catch (java.io.IOException | NullPointerException ignore) {}
+        }
     }
 
-    @GetMapping("/insertToDB/operation")
-    public ModelAndView insertToDBOperation(){
-        System.out.println("form ricevuto");
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/starwarsunlimited", "root", "Minecraft35?")) {
+    private String[] aggiungiCella(String[] oldArray, String line){
+        String[] newArray = new String[oldArray.length+1];
+        System.arraycopy(oldArray, 0, newArray, 0, oldArray.length);
+        newArray[oldArray.length] = line;
+        return newArray;
+    }
+
+    public String join(String[] array, String concat){
+        String ret = "";
+        for (int i = 0; i < array.length; i++) {
+            ret = ret.concat(array[i] + (i+1 != array.length ? concat : ""));
+        }
+        return ret;
+    }
+
+	private String selectToString(ResultSet rs, String body) throws SQLException{
+		String[] tabel = new String[0];
+		String label = "";
+		for(int i = 1; i<= rs.getMetaData().getColumnCount(); i++) {
+			label = label.concat("<td>" + rs.getMetaData().getColumnName(i) + "</td>");
+		}
+		tabel = aggiungiCella(tabel, label);
+		while(rs.next()) {
+			String row = "";
+			for(int i = 1; i<= rs.getMetaData().getColumnCount(); i++) {
+				row = row.concat("<td>" + rs.getString(i) + "</td>");
+			}
+			tabel = aggiungiCella(tabel, row);
+		}
+		body = body.concat("<table border=\"\">");
+		for(String line:tabel) {
+			body = body.concat("<tr>" + line + "</tr>");
+		}
+		body = body.concat("</table>");
+		return body;
+	}
+
+    @GetMapping("/carte")
+    public String carte(){
+        String body;
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")) {
             try (Statement stmt = conn.createStatement()) {
-                System.out.println("ho applicato " + stmt.executeUpdate("insert into carte values ()") + " modifiche");
+                try (ResultSet rs = stmt.executeQuery("select * from carte")) {
+                    body = selectToString(rs, "");
+                }
             }
-        } catch (SQLException e) {
+        }catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return new ModelAndView("insertToDB");
+        return body;
     }
+
+    @GetMapping("/insertToDB")
+	public ModelAndView insertToDB(){
+        String[] tratti = getFile("tratti.txt");
+        ModelAndView insertToDB = new ModelAndView("insertToDB");
+        insertToDB.addObject("tratti", tratti);
+        return insertToDB;
+	}
+
+    @GetMapping("/insertToDB/operation")
+public ModelAndView insertToDBOperation(
+    @RequestParam(required = false) boolean unica,
+    @RequestParam String nome,
+    @RequestParam(required = false) String titolo,
+    @RequestParam String espansione,
+    @RequestParam Integer numero,
+    @RequestParam(required = false) String aspettoPrimario,
+    @RequestParam(required = false) String aspettoSecondario,
+    @RequestParam String tipo,
+    @RequestParam(required = false) String[] tratti,
+    @RequestParam(required = false) boolean imboscata,
+    @RequestParam(required = false) boolean tenacia,
+    @RequestParam(required = false) boolean sopraffazione,
+    @RequestParam(required = false) boolean sabotatore,
+    @RequestParam(required = false) boolean sentinella,
+    @RequestParam(required = false) boolean schermata,
+    @RequestParam(required = false) boolean incursione,
+    @RequestParam(required = false) Integer valoreIncursione,
+    @RequestParam(required = false) boolean recupero,
+    @RequestParam(required = false) Integer valoreRecupero,
+    @RequestParam(required = false) boolean contrabbando,
+    @RequestParam(required = false) String valoreContrabbando,
+    @RequestParam(required = false) boolean quandoGiocata,
+    @RequestParam(required = false) String valoreQuandoGiocata,
+    @RequestParam(required = false) boolean taglia,
+    @RequestParam(required = false) String valoreTaglia,
+    @RequestParam(required = false) boolean quandoSconfitta,
+    @RequestParam(required = false) String valoreQuandoSconfitta,
+    @RequestParam(required = false) boolean quandoAttacca,
+    @RequestParam(required = false) String valoreQuandoAttacca,
+    @RequestParam(required = false) boolean descrizioneEvento,
+    @RequestParam(required = false) String valoreDescrizioneEvento,
+    @RequestParam(required = false, defaultValue = "") String arena,
+    @RequestParam(required = false) Integer costo,
+    @RequestParam(required = false) Integer vita,
+    @RequestParam(required = false) Integer potenza,
+    @RequestParam String rarita,
+    @RequestParam double prezzo,
+    @RequestParam String artista
+) {
+    System.out.println("form ricevuto");
+    try (Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/starwarsunlimited", "root", "Minecraft35?")) {
+        try (Statement stmt = conn.createStatement()) {
+            String insert = "insert into carte values(\"" +
+                    espansione.split(";")[0] +
+                    "\"," + numero +
+                    ",\"" + nome +
+                    "\"," + espansione.split(";")[1] +
+                    "," + unica +
+                    ",\"" + titolo +
+                    "\",\"" + aspettoPrimario +
+                    "\",\"" + aspettoSecondario +
+                    "\",\"" + tipo +
+                    "\",\"" + join(tratti, " * ") +
+                    "\"," + (imboscata ? 1 : 0) +
+                    "," + (tenacia ? 1 : 0) +
+                    "," + (sopraffazione ? 1 : 0)
+                    + "," + (sabotatore ? 1 : 0) +
+                    "," + (sentinella ? 1 : 0) +
+                    "," + (schermata ? 1 : 0) +
+                    "," + (incursione ? 1 : 0) +
+                    "," + (recupero ? 1 : 0) +
+                    "," + (contrabbando ? 1 : 0) +
+                    "," + (quandoGiocata ? 1 : 0) +
+                    "," + (taglia ? 1 : 0) +
+                    "," + (quandoSconfitta ? 1 : 0) +
+                    "," + (quandoAttacca ? 1 : 0) +
+                    "," + (descrizioneEvento ? 1 : 0) +
+                    ",\"" + rarita +
+                    "\"," + costo +
+                    "," + vita +
+                    "," + potenza +
+                    "," + prezzo +
+                    ",\"" + artista +
+                    "\"," + valoreIncursione +
+                    "," + valoreRecupero +
+                    ",\"" + valoreContrabbando +
+                    "\",\"" + valoreQuandoGiocata +
+                    "\",\"" + valoreTaglia +
+                    "\",\"" + valoreQuandoSconfitta +
+                    "\",\"" + valoreQuandoAttacca +
+                    "\",\"" + valoreDescrizioneEvento +
+                    "\",\"" + arena +
+                    "\");";
+            System.out.println(insert);
+            stmt.executeUpdate(insert);
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }finally {
+        return insertToDB();
+    }
+}
 
     @GetMapping("/insertToDeck")
 	public ModelAndView insertToDeck(){

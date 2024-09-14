@@ -1,5 +1,3 @@
-package com.example.starwarsunlimiteddb;
-
 public class CreazioneElencoTratti{
     public static void main(String[] args) {
         /*
