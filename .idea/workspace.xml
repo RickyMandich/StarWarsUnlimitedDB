@@ -4,18 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b43c53c-3786-4618-8e35-859e19136beb" name="Changes" comment="aggiornamento 2024 09 13 12:01">
+    <list default="true" id="9b43c53c-3786-4618-8e35-859e19136beb" name="Changes" comment="aggiornamento 2024 09 16 15:39">
       <change beforePath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/StarWarsUnlimitedDB.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/webScraping/CreazioneElencoTratti.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/webScraping/CreazioneElencoTratti.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/insertToDB.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/insertToDB.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webScraping/src/CreazioneElencoTratti.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webScraping/src/Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webScraping/webScraping.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/starwarsunlimiteddb/StarWarsUnlimitedDbApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/starwarsunlimiteddb/StarWarsUnlimitedDbApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +94,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.CreazioneElencoTratti">
+  <component name="RunManager" selected="Spring Boot.StarWarsUnlimitedDbApplication">
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Test" />
       <method v="2">
@@ -170,6 +164,8 @@
       <workItem from="1726468313614" duration="2005000" />
       <workItem from="1726474021264" duration="332000" />
       <workItem from="1726493685103" duration="177000" />
+      <workItem from="1726493932177" duration="121000" />
+      <workItem from="1726494060161" duration="231000" />
     </task>
     <task id="LOCAL-00001" summary="aggiornamento 2024 09 12 23:38">
       <option name="closed" value="true" />
@@ -187,7 +183,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726221698911</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="aggiornamento 2024 09 16 15:39">
+      <option name="closed" value="true" />
+      <created>1726493981119</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1726493981119</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,6 +211,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="aggiornamento 2024 09 12 23:38" />
     <MESSAGE value="aggiornamento 2024 09 13 12:01" />
-    <option name="LAST_COMMIT_MESSAGE" value="aggiornamento 2024 09 13 12:01" />
+    <MESSAGE value="aggiornamento 2024 09 16 15:39" />
+    <option name="LAST_COMMIT_MESSAGE" value="aggiornamento 2024 09 16 15:39" />
   </component>
 </project>

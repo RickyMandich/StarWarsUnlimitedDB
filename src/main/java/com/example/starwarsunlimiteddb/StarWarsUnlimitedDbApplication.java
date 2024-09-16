@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.*;
@@ -93,6 +94,7 @@ public class StarWarsUnlimitedDbApplication {
 	}
 
     @GetMapping("/carte")
+    @ResponseBody
     public String carte(){
         String body;
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")) {
@@ -148,6 +150,8 @@ public ModelAndView insertToDBOperation(
     @RequestParam(required = false) String valoreQuandoAttacca,
     @RequestParam(required = false) boolean descrizioneEvento,
     @RequestParam(required = false) String valoreDescrizioneEvento,
+    @RequestParam(required = false) boolean azione,
+    @RequestParam(required = false) String valoreAzione,
     @RequestParam(required = false, defaultValue = "") String arena,
     @RequestParam(required = false) Integer costo,
     @RequestParam(required = false) Integer vita,
@@ -199,6 +203,8 @@ public ModelAndView insertToDBOperation(
                     "\",\"" + valoreQuandoAttacca +
                     "\",\"" + valoreDescrizioneEvento +
                     "\",\"" + arena +
+                    "\"," + (azione ? 1 : 0) +
+                    ",\"" + valoreAzione +
                     "\");";
             System.out.println(insert);
             stmt.executeUpdate(insert);
