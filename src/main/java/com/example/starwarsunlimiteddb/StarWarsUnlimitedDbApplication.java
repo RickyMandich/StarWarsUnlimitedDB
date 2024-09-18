@@ -224,7 +224,7 @@ public ModelAndView insertToDBOperation(
     @GetMapping("/insertToDeck/operation")
     public ModelAndView insertToDeckOperation(@RequestParam String mazzo,@RequestParam String espansione,@RequestParam String nr){
         System.out.println("form ricevuto");
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/starwarsunlimited", "root", "Minecraft35?")) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")) {
             try (Statement stmt = conn.createStatement()) {
                 System.out.println("sono dentro il try");
                 System.out.println("ho applicato " + stmt.executeUpdate("insert into mazzi values ('" + mazzo.toLowerCase() + "', '" + espansione.toUpperCase() + "', '" + nr + "')") + " modifiche");
