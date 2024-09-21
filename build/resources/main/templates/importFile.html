@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload JSON File</title>
+</head>
+<body>
+    <h2>Seleziona un file JSON da importare</h2>
+    <form action="/upload-json" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".json" />
+        <button type="submit">Importa JSON</button>
+    </form>
+</body>
+</html>

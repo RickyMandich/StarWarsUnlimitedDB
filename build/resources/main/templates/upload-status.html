@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Stato Upload</title>
+</head>
+<body>
+    <h2>Stato dell'Upload</h2>
+    <div th:if="${message}">
+        <h3 th:text="${message}"></h3>
+    </div>
+    <a href="/uploadJsonDeck">Torna al form di upload</a>
+</body>
+</html>

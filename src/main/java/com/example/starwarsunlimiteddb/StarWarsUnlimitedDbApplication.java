@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -75,37 +76,56 @@ public class StarWarsUnlimitedDbApplication {
 		String[] tabel = new String[0];
 		String label = "";
 		for(int i = 1; i<= rs.getMetaData().getColumnCount(); i++) {
-			label = label.concat("<td>" + rs.getMetaData().getColumnName(i) + "</td>");
+			label = label.concat("<td>" + rs.getMetaData().getColumnName(i) + "</a></td>");
 		}
-		tabel = aggiungiCella(tabel, label);
+		tabel = aggiungiCella(tabel, "<tr>" + label + "</tr>");
 		while(rs.next()) {
 			String row = "";
 			for(int i = 1; i<= rs.getMetaData().getColumnCount(); i++) {
-				row = row.concat("<td>" + rs.getString(i) + "</td>");
+				row = row.concat("<td> <a target=\"_blank\" href=\"https://swudb.com/card/" + rs.getString("espansione") + "/" + String.format("%03d", rs.getInt("numero")) + "\">" + rs.getString(i) + "<a></td>");
 			}
-			tabel = aggiungiCella(tabel, row);
+			tabel = aggiungiCella(tabel, "<tr>" + row + "</tr>");
 		}
 		body = body.concat("<table border=\"\">");
 		for(String line:tabel) {
-			body = body.concat("<tr>" + line + "</tr>");
+			body = body.concat(line);
 		}
 		body = body.concat("</table>");
 		return body;
 	}
 
-    @GetMapping("/carte")
+    @RequestMapping("/carte")
     @ResponseBody
     public String carte(){
         String body;
+        /*body = new ModelAndView("carte");
+        String[] carte;
+        String[] link;*/
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")) {
             try (Statement stmt = conn.createStatement()) {
-                try (ResultSet rs = stmt.executeQuery("select * from carte")) {
+                try (ResultSet rs = stmt.executeQuery("select * from carte ORDER BY ordineEspansione, numero")) {
+                    /*carte = aggiungiCella(new String[0],"");
+                    link = aggiungiCella(new String[0],"");
+                    for(int i=1;i<= rs.getMetaData().getColumnCount();i++){
+                        carte[0] = carte[0].concat("<td>" + rs.getMetaData().getColumnName(i) + "</td>");
+                    }
+                    while(rs.next()) {
+                        String line = "";
+                        for(int i = 1; i<= rs.getMetaData().getColumnCount(); i++){
+                            line = line.concat("<td>" + rs.getString(i) + "</td>");
+                        }
+                        carte = aggiungiCella(carte, line);
+                        link = aggiungiCella(link,"https://swudb.com/card/" + rs.getString("espansione") + "/" + rs.getString("numero"));
+                    }
+                     */
                     body = selectToString(rs, "");
                 }
             }
         }catch (SQLException e) {
             throw new RuntimeException(e);
-        }
+        }/*
+        body.addObject("carte", carte);
+        body.addObject("link", link);*/
         return body;
     }
 
@@ -235,7 +255,5 @@ public ModelAndView insertToDBOperation(
         return new ModelAndView("insertToDeck");
     }
 
-    public static void main(String[] args){
-        SpringApplication.run(StarWarsUnlimitedDbApplication.class, args);
-    }
+    public static void main(String[] args){SpringApplication.run(StarWarsUnlimitedDbApplication.class, args);}
 }

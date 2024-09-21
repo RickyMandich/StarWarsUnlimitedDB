@@ -3,6 +3,8 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="22">
       <module name="WebScraping" target="11" />
+      <module name="WebScraping.main" target="11" />
+      <module name="WebScraping.test" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
