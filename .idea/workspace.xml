@@ -4,25 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b43c53c-3786-4618-8e35-859e19136beb" name="Changes" comment="aggiornamento 2024 09 18 12:43">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/starwarsunlimiteddb/Deck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="9b43c53c-3786-4618-8e35-859e19136beb" name="Changes" comment="aggiornamento 2024 09 21 12:31">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/starwarsunlimiteddb/StarWarsUnlimitedDbApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/starwarsunlimiteddb/StarWarsUnlimitedDbApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/StarWarsUnlimitedDbApplication.class.uniqueId0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/starwarsunlimiteddb/StarWarsUnlimitedDbApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/starwarsunlimiteddb/StarWarsUnlimitedDbApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,6 +197,7 @@
       <workItem from="1726657890640" duration="511000" />
       <workItem from="1726736142959" duration="25242000" />
       <workItem from="1726907202029" duration="17000" />
+      <workItem from="1726914360656" duration="749000" />
     </task>
     <task id="LOCAL-00001" summary="aggiornamento 2024 09 12 23:38">
       <option name="closed" value="true" />
@@ -255,7 +239,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726656234663</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="aggiornamento 2024 09 21 12:31">
+      <option name="closed" value="true" />
+      <created>1726914736194</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1726914736194</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,6 +270,7 @@
     <MESSAGE value="aggiornamento 2024 09 16 15:39" />
     <MESSAGE value="aggiornamento 2024 09 16 15:56" />
     <MESSAGE value="aggiornamento 2024 09 18 12:43" />
-    <option name="LAST_COMMIT_MESSAGE" value="aggiornamento 2024 09 18 12:43" />
+    <MESSAGE value="aggiornamento 2024 09 21 12:31" />
+    <option name="LAST_COMMIT_MESSAGE" value="aggiornamento 2024 09 21 12:31" />
   </component>
 </project>

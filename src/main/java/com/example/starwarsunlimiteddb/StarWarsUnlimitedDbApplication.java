@@ -255,5 +255,10 @@ public ModelAndView insertToDBOperation(
         return new ModelAndView("insertToDeck");
     }
 
+    @GetMapping("/")
+    public ModelAndView home(){
+        return new ModelAndView("home");
+    }
+
     public static void main(String[] args){SpringApplication.run(StarWarsUnlimitedDbApplication.class, args);}
 }
