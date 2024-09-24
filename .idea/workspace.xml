@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b43c53c-3786-4618-8e35-859e19136beb" name="Changes" comment="aggiornamento 2024 09 21 12:31">
+    <list default="true" id="9b43c53c-3786-4618-8e35-859e19136beb" name="Changes" comment="aggiornamento 2024 09 23 11:51">
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,8 +49,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -85,6 +91,7 @@
     &quot;Spring Boot.StarWarsUnlimitedDbApplication.executor&quot;: &quot;Run&quot;,
     &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_directory_selection&quot;: &quot;C:/Users/Riccardo/IdeaProjects/StarWarsUnlimitedDB/src/main/java/com/example/starwarsunlimiteddb&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/Riccardo/OneDrive - I.I.S. Vendramin Corner/Documenti/wallpaper&quot;,
@@ -198,6 +205,8 @@
       <workItem from="1726736142959" duration="25242000" />
       <workItem from="1726907202029" duration="17000" />
       <workItem from="1726914360656" duration="749000" />
+      <workItem from="1727079349305" duration="2681000" />
+      <workItem from="1727168533139" duration="194000" />
     </task>
     <task id="LOCAL-00001" summary="aggiornamento 2024 09 12 23:38">
       <option name="closed" value="true" />
@@ -247,7 +256,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726914736194</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="aggiornamento 2024 09 23 11:51">
+      <option name="closed" value="true" />
+      <created>1727085075055</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1727085075055</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -271,6 +288,7 @@
     <MESSAGE value="aggiornamento 2024 09 16 15:56" />
     <MESSAGE value="aggiornamento 2024 09 18 12:43" />
     <MESSAGE value="aggiornamento 2024 09 21 12:31" />
-    <option name="LAST_COMMIT_MESSAGE" value="aggiornamento 2024 09 21 12:31" />
+    <MESSAGE value="aggiornamento 2024 09 23 11:51" />
+    <option name="LAST_COMMIT_MESSAGE" value="aggiornamento 2024 09 23 11:51" />
   </component>
 </project>
