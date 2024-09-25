@@ -3,10 +3,7 @@ package com.example.starwarsunlimiteddb;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.*;
@@ -98,34 +95,31 @@ public class StarWarsUnlimitedDbApplication {
     @ResponseBody
     public String carte(){
         String body;
-        /*body = new ModelAndView("carte");
-        String[] carte;
-        String[] link;*/
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")) {
             try (Statement stmt = conn.createStatement()) {
                 try (ResultSet rs = stmt.executeQuery("select * from carte ORDER BY ordineEspansione, numero")) {
-                    /*carte = aggiungiCella(new String[0],"");
-                    link = aggiungiCella(new String[0],"");
-                    for(int i=1;i<= rs.getMetaData().getColumnCount();i++){
-                        carte[0] = carte[0].concat("<td>" + rs.getMetaData().getColumnName(i) + "</td>");
-                    }
-                    while(rs.next()) {
-                        String line = "";
-                        for(int i = 1; i<= rs.getMetaData().getColumnCount(); i++){
-                            line = line.concat("<td>" + rs.getString(i) + "</td>");
-                        }
-                        carte = aggiungiCella(carte, line);
-                        link = aggiungiCella(link,"https://swudb.com/card/" + rs.getString("espansione") + "/" + rs.getString("numero"));
-                    }
-                     */
                     body = selectToString(rs, "");
                 }
             }
         }catch (SQLException e) {
             throw new RuntimeException(e);
-        }/*
-        body.addObject("carte", carte);
-        body.addObject("link", link);*/
+        }
+        return body;
+    }
+
+    @RequestMapping("/mazzi={mazzo}")
+    @ResponseBody
+    public String mazzi(@PathVariable String mazzo){
+        String body;
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")) {
+            try (Statement stmt = conn.createStatement()) {
+                try (ResultSet rs = stmt.executeQuery("select m.mazzo, c.* from carte c, mazzi m where c.espansione  = m.espansione and c.numero  = m.numero order by c.ordineEspansione, c.numero ;")) {
+                    body = selectToString(rs, "");
+                }
+            }
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return body;
     }
 
