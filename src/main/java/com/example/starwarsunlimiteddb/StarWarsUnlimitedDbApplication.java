@@ -93,12 +93,17 @@ public class StarWarsUnlimitedDbApplication {
 
     @RequestMapping("/carte")
     @ResponseBody
-    public String carte(){
+    public String carte(@RequestParam (required = false, defaultValue = "") String carta){
         String body;
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")) {
             try (Statement stmt = conn.createStatement()) {
-                try (ResultSet rs = stmt.executeQuery("select * from carte ORDER BY ordineEspansione, numero")) {
-                    body = selectToString(rs, "");
+                String select = "select * from carte where nome like \"%" + carta + "%\"ORDER BY ordineEspansione, numero";
+                try (ResultSet rs = stmt.executeQuery(select)) {
+                    body = "<form action=\"\" method=\"GET\">" +
+                            "<input value=\"" + carta + "\" type=\"text\" name=\"carta\" " +
+                            "placeholder=\"Inserisci il nome della carta\">" +
+                            "</form>";
+                    body = selectToString(rs, body);
                 }
             }
         }catch (SQLException e) {
@@ -107,14 +112,19 @@ public class StarWarsUnlimitedDbApplication {
         return body;
     }
 
-    @RequestMapping("/mazzi={mazzo}")
+    @RequestMapping("/mazzi")
     @ResponseBody
-    public String mazzi(@PathVariable String mazzo){
+    public String mazzi(@RequestParam (required = false, defaultValue = "") String mazzo){
         String body;
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")) {
             try (Statement stmt = conn.createStatement()) {
-                try (ResultSet rs = stmt.executeQuery("select m.mazzo, c.* from carte c, mazzi m where c.espansione  = m.espansione and c.numero  = m.numero order by c.ordineEspansione, c.numero ;")) {
-                    body = selectToString(rs, "");
+                String select = "select m.mazzo, c.* from carte c, mazzi m where c.espansione  = m.espansione and c.numero = m.numero and m.mazzo like \"%" + mazzo + "%\" order by c.ordineEspansione, c.numero;";
+                try (ResultSet rs = stmt.executeQuery(select)) {
+                    body = "<form action=\"\" method=\"GET\">" +
+                            "<input value=\"" + mazzo + "\" type=\"text\" name=\"mazzo\" " +
+                            "placeholder=\"Inserisci il nome del mazzo\">" +
+                            "</form>";
+                    body = selectToString(rs, body);
                 }
             }
         }catch (SQLException e) {
