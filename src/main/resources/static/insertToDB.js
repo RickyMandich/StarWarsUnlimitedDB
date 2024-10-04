@@ -5,7 +5,7 @@ function filtra() {
     for(let i=0;i<tratti.length;i++){
         tratti[i].style.display = "inline-flex";
         output(tratti[i].innerHTML);
-        if(!tratti[i].innerHTML.includes(filtro)){
+        if(!tratti[i].getElementsByTagName("p")[0].innerHTML.includes(filtro)){
             tratti[i].style.display = "none";
         }/**/
     }

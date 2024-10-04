@@ -1,16 +1,27 @@
 package com.example.starwarsunlimiteddb;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
 import java.sql.*;
+import java.util.Map;
 
 @SpringBootApplication
 @Controller
 public class StarWarsUnlimitedDbApplication {
+
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    Utente user = null;
 
     public String[][] add(String[][] tratti, String tratto){
         if(tratti.length == 0){
@@ -102,7 +113,7 @@ public class StarWarsUnlimitedDbApplication {
                     body = "<form action=\"\" method=\"GET\">" +
                             "<input value=\"" + carta + "\" type=\"text\" name=\"carta\" " +
                             "placeholder=\"Inserisci il nome della carta\">" +
-                            "</form>";
+                            "</form>" + select;
                     body = selectToString(rs, body);
                 }
             }
@@ -123,7 +134,7 @@ public class StarWarsUnlimitedDbApplication {
                     body = "<form action=\"\" method=\"GET\">" +
                             "<input value=\"" + mazzo + "\" type=\"text\" name=\"mazzo\" " +
                             "placeholder=\"Inserisci il nome del mazzo\">" +
-                            "</form>";
+                            "</form>" + select;
                     body = selectToString(rs, body);
                 }
             }
@@ -136,7 +147,7 @@ public class StarWarsUnlimitedDbApplication {
     @GetMapping("/insertToDB")
 	public ModelAndView insertToDB(){
         String[] tratti = getFile("tratti.txt");
-        ModelAndView insertToDB = new ModelAndView("insertToDB");
+        ModelAndView insertToDB = new ModelAndView("html/insertToDB");
         insertToDB.addObject("tratti", tratti);
         return insertToDB;
 	}
@@ -242,26 +253,83 @@ public ModelAndView insertToDBOperation(
 
     @GetMapping("/insertToDeck")
 	public ModelAndView insertToDeck(){
-		return new ModelAndView("insertToDeck");
+		return new ModelAndView("html/insertToDeck");
 	}
 
     @GetMapping("/insertToDeck/operation")
-    public ModelAndView insertToDeckOperation(@RequestParam String mazzo,@RequestParam String espansione,@RequestParam String nr){
+    public ModelAndView insertToDeckOperation(@RequestParam String mazzo,@RequestParam String espansione,@RequestParam int nr){
         System.out.println("form ricevuto");
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")) {
             try (Statement stmt = conn.createStatement()) {
                 System.out.println("sono dentro il try");
-                System.out.println("ho applicato " + stmt.executeUpdate("insert into mazzi values ('" + mazzo.toLowerCase() + "', '" + espansione.toUpperCase() + "', '" + nr + "')") + " modifiche");
+                System.out.println("ho applicato " + stmt.executeUpdate("insert into mazzi values ('" + mazzo.toLowerCase() + "', '" + espansione.toUpperCase() + "', " + nr + "," + user.getCodice() + ")") + " modifiche");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return new ModelAndView("insertToDeck");
+        return new ModelAndView("html/insertToDeck");
     }
 
     @GetMapping("/")
     public ModelAndView home(){
-        return new ModelAndView("home");
+        return new ModelAndView("html/home");
+    }
+
+    @GetMapping("/uploadJsonDeck")
+    public String showUploadForm() {
+        return "html/importFile";
+    }
+
+    @GetMapping("/uploadStatus")
+    public String uploadStatus(){
+        return "html/upload-status";
+    }
+
+    @PostMapping("/upload-json")
+    public String uploadJson(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+        if (file.isEmpty()) {
+            redirectAttributes.addFlashAttribute("message", "Seleziona un file JSON da caricare");
+            return "redirect:/uploadStatus";
+        }
+
+        try {
+            // Leggi il contenuto del file JSON
+            String jsonContent = new String(file.getBytes());
+
+            // Converti il JSON in un oggetto Java (in questo caso, una Map)
+            Map<String, Object> jsonData = objectMapper.readValue(jsonContent, Map.class);
+
+            // Qui puoi elaborare i dati JSON come necessario
+            // Per esempio, potresti salvare i dati nel database
+            processJsonData(jsonData);
+
+            redirectAttributes.addFlashAttribute("message",
+                "File JSON importato con successo: " + file.getOriginalFilename()
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+            redirectAttributes.addFlashAttribute("message", "Errore nell'importazione del file JSON");
+        }
+
+        return "redirect:/uploadStatus";
+    }
+
+    private void processJsonData(Map<String, Object> jsonData) {
+        System.out.println("Elaborazione dei dati JSON: " + jsonData);
+        try(Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")){
+            try(Statement stmt = conn.createStatement()){
+                String json = jsonData.toString();
+                Deck myDeck = new Deck(json);
+                System.out.println(myDeck.getInsertSql());
+                System.out.println("ho fatto " + stmt.executeUpdate(myDeck.getInsertSql()) + " modifiche");
+            }catch (SQLException e){
+                System.out.println("statement");
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            System.out.println("connection");
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args){SpringApplication.run(StarWarsUnlimitedDbApplication.class, args);}

@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b43c53c-3786-4618-8e35-859e19136beb" name="Changes" comment="aggiornamento 2024 09 25 11:13">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/checksums/sha1-checksums.bin" afterDir="false" />
+    <list default="true" id="9b43c53c-3786-4618-8e35-859e19136beb" name="Changes" comment="aggiornamento 2024 09 26 14:47">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/starwarsunlimiteddb/Utente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.bin" afterDir="false" />
@@ -14,14 +13,19 @@
       <change beforePath="$PROJECT_DIR$/.gradle/8.10/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/starwarsunlimiteddb/StarWarsUnlimitedDbApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/starwarsunlimiteddb/StarWarsUnlimitedDbApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/static/insertToDB.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/insertToDB.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/StarWarsUnlimitedDbApplication.class.uniqueId0" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/StarWarsUnlimitedDbApplication.class.uniqueId0" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/starwarsunlimiteddb/StarWarsUnlimitedDbApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/starwarsunlimiteddb/StarWarsUnlimitedDbApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/starwarsunlimiteddb/controller/JsonImportController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/insertToDB.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/insertToDB.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/html/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/importFile.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/html/importFile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/insertToDB.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/html/insertToDB.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/insertToDeck.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/html/insertToDeck.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/upload-status.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/html/upload-status.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,8 +63,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -123,6 +127,11 @@
     ]
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Riccardo\IdeaProjects\StarWarsUnlimitedDB\src\main\resources\templates\html" />
+    </key>
+  </component>
   <component name="RunManager" selected="Spring Boot.StarWarsUnlimitedDbApplication">
     <configuration name="Deck" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.starwarsunlimiteddb.Deck" />
@@ -224,7 +233,14 @@
       <workItem from="1727291473303" duration="77000" />
       <workItem from="1727297599220" duration="7000" />
       <workItem from="1727336922130" duration="2678000" />
-      <workItem from="1727347981471" duration="2215000" />
+      <workItem from="1727347981471" duration="2331000" />
+      <workItem from="1727425452473" duration="1758000" />
+      <workItem from="1727427981268" duration="5590000" />
+      <workItem from="1727440341316" duration="3324000" />
+      <workItem from="1727882352908" duration="645000" />
+      <workItem from="1727884348760" duration="148000" />
+      <workItem from="1727982653522" duration="156000" />
+      <workItem from="1728023743885" duration="373000" />
     </task>
     <task id="LOCAL-00001" summary="aggiornamento 2024 09 12 23:38">
       <option name="closed" value="true" />
@@ -314,7 +330,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727255601603</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="aggiornamento 2024 09 26 14:47">
+      <option name="closed" value="true" />
+      <created>1727354872079</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1727354872079</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -343,6 +367,7 @@
     <MESSAGE value="aggiornamento 2024 09 24 16:06" />
     <MESSAGE value="aggiornamento 2024 09 25 11:12" />
     <MESSAGE value="aggiornamento 2024 09 25 11:13" />
-    <option name="LAST_COMMIT_MESSAGE" value="aggiornamento 2024 09 25 11:13" />
+    <MESSAGE value="aggiornamento 2024 09 26 14:47" />
+    <option name="LAST_COMMIT_MESSAGE" value="aggiornamento 2024 09 26 14:47" />
   </component>
 </project>
