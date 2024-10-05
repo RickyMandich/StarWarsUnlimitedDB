@@ -33,12 +33,21 @@
     </div>
 </body>
 <script>
+    function sleep(millis) {
+        const start = Date.now();
+        const end = start + millis;
+        while (Date.now() < end) {
+            console.log(`Tempo rimanente: ${end - Date.now()} ms`);
+        }
+    }
+
     document.addEventListener("DOMContentLoaded", function() {
         if(document.getElementById("result").innerHTML === "account registrato con successo"){
             document.getElementById("result").style.display = "inline-block";
             document.getElementById("result").style.backgroundColor = 'green';
-            window.location.href = "http://localhost:66/profilo";
-        }else{
+            sleep(3000);
+            window.location.href = "http://localhost:66/login";
+        }else if(document.getElementById("result").innerHTML !== ""){
             document.getElementById("result").style.display = "inline-block";
             document.getElementById("result").style.backgroundColor = 'red';
         }

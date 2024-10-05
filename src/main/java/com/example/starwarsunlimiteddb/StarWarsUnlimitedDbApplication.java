@@ -426,13 +426,16 @@ public ModelAndView insertToDBOperation(
             ModelAndView mav = new ModelAndView("html/profilo");
             mav.addObject("nome", user.getNome());
             mav.addObject("email", user.getEmail());
-            mav.addObject("password", user.getPassword());
             try(Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")){
             try(Statement stmt = conn.createStatement()){
                 try(ResultSet rs = stmt.executeQuery("select * from mazzi where codUtente = " + user.getID() + ";")){
                     String[] mazzi = new String[0];
                     while(rs.next()){
-
+                        /*
+                        * todo:
+                        *  creare l'elenco dei mazzi;
+                        *  creare il file html a cui è legato questo model and view
+                        *  */
                     }
                 }catch (SQLException e){
                     System.out.println("select");
