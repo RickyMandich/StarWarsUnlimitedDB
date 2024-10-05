@@ -36,6 +36,16 @@ h1 {
     margin-bottom: 15px;
 }
 
+.form-group>span{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    display: none;
+    text-align: center;
+}
+
 input {
     width: 100%;
     padding: 12px;

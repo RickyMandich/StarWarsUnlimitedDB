@@ -10,12 +10,15 @@
     <div class="container">
         <div class="form-container">
             <h1>Log in</h1>
-            <form action="login/operation">
+            <form action="http://localhost:66/login/operation">
                 <div class="form-group">
                     <input type="text" name="userID" placeholder="Email/Username" required>
                 </div>
                 <div class="form-group">
                     <input type="password" name="password" placeholder="Password" required>
+                </div>
+                <div class="form-group">
+                    <span th:text="${result}" id="result"></span>
                 </div>
                 <button type="submit" class="submit-btn">Log in</button>
             </form>
@@ -26,4 +29,16 @@
         </div>
     </div>
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if(document.getElementById("result").innerHTML === "accesso eseguito con successo"){
+            document.getElementById("result").style.backgroundColor = 'green';
+            document.getElementById("result").style.display = "inline-block";
+            window.location.href = "http://localhost:66/profilo";
+        }else if(document.getElementById("result").innerHTML !== ""){
+            document.getElementById("result").style.backgroundColor = 'red';
+            document.getElementById("result").style.display = "inline-block";
+        }
+    });
+</script>
 </html>

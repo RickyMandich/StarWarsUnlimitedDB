@@ -341,19 +341,29 @@ public ModelAndView insertToDBOperation(
     }
 
     @GetMapping("/login/operation")
-    public String login(@RequestParam String userID, @RequestParam String password){
+    public ModelAndView login(@RequestParam String userID, @RequestParam String password){
+        ModelAndView login = new ModelAndView("html/login");
         try(Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")){
             try(Statement stmt = conn.createStatement()){
-                try(ResultSet rs = stmt.executeQuery("select * from utenti where nome = '" + userID + "' or mail = '" + userID + "'")){
+                try(ResultSet rs = stmt.executeQuery("select * from utenti where nome = '" + userID + "' or email = '" + userID + "'")){
                     boolean notFound = true;
+                    boolean findUser = false;
                     while(rs.next() && notFound){
+                        findUser = true;
                         if(rs.getString("password").equals(password)){
                             notFound = false;
-                            user = new Utente(rs, rs.getRow());
+                            user = new Utente(rs.getString("nome"), rs.getInt("id"), rs.getString("email"), rs.getString("password"));
+                            login.addObject("result", "accesso eseguito con successo");
+                        }else{
+                            login.addObject("result", "password errata");
                         }
+                    }
+                    if(!findUser){
+                        login.addObject("result", "nome utente o email errati");
                     }
                 }catch (SQLException e){
                     System.out.println("select");
+                    e.printStackTrace();
                 }
             }catch (SQLException e){
                 System.out.println("statement");
@@ -361,7 +371,7 @@ public ModelAndView insertToDBOperation(
         }catch (SQLException e){
             System.out.println("connection");
         }
-        return "redirect:/profilo";
+        return login;
     }
 
     @GetMapping("/signIn")

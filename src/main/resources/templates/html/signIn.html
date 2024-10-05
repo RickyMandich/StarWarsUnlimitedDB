@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <link rel="stylesheet" href="/css/signIn.css">
+    <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
     <div class="container">
         <div class="form-container">
             <h1>Sign up</h1>
-            <form action="signIn/operation">
+            <form action="http://localhost:66/signIn/operation">
                 <div class="form-group">
                     <input type="text" name="nome" placeholder="Name" required>
                 </div>
@@ -27,7 +27,7 @@
             </form>
             <div class="alternate-action">
                 <span>or </span>
-                <a href="login">Log in</a>
+                <a href="/login">Log in</a>
             </div>
         </div>
     </div>
@@ -35,9 +35,11 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         if(document.getElementById("result").innerHTML === "account registrato con successo"){
+            document.getElementById("result").style.display = "inline-block";
             document.getElementById("result").style.backgroundColor = 'green';
-            window.location.href = "localhost:66/profilo";
+            window.location.href = "http://localhost:66/profilo";
         }else{
+            document.getElementById("result").style.display = "inline-block";
             document.getElementById("result").style.backgroundColor = 'red';
         }
     });
