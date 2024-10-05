@@ -124,12 +124,12 @@ public class StarWarsUnlimitedDbApplication {
     }
 
     @RequestMapping("/mazzi")
-    @ResponseBody
     public String mazzi(@RequestParam (required = false, defaultValue = "") String mazzo){
+        if(user == null) return "redirect:/login";
         String body;
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")) {
             try (Statement stmt = conn.createStatement()) {
-                String select = "select m.mazzo, c.* from carte c, mazzi m where c.espansione  = m.espansione and c.numero = m.numero and m.mazzo like \"%" + mazzo + "%\" order by c.ordineEspansione, c.numero;";
+                String select = "select m.mazzo, c.* from carte c, mazzi m where c.espansione  = m.espansione and c.numero = m.numero and m.mazzo like \"%" + mazzo + "%\" and codUtente = " + user.getID() + " order by c.ordineEspansione, c.numero;";
                 try (ResultSet rs = stmt.executeQuery(select)) {
                     body = "<form action=\"\" method=\"GET\">" +
                             "<input value=\"" + mazzo + "\" type=\"text\" name=\"mazzo\" " +
@@ -253,21 +253,23 @@ public ModelAndView insertToDBOperation(
 
     @GetMapping("/insertToDeck")
 	public ModelAndView insertToDeck(){
-		return new ModelAndView("html/insertToDeck");
+        if(user!=null) return new ModelAndView("html/insertToDeck");
+        else return new ModelAndView("redirect:html/login");
 	}
 
     @GetMapping("/insertToDeck/operation")
     public ModelAndView insertToDeckOperation(@RequestParam String mazzo,@RequestParam String espansione,@RequestParam int nr){
+        if(user == null) return new ModelAndView("redirect:html/login");
         System.out.println("form ricevuto");
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")) {
             try (Statement stmt = conn.createStatement()) {
                 System.out.println("sono dentro il try");
-                System.out.println("ho applicato " + stmt.executeUpdate("insert into mazzi values ('" + mazzo.toLowerCase() + "', '" + espansione.toUpperCase() + "', " + nr + "," + user.getCodice() + ")") + " modifiche");
+                System.out.println("ho applicato " + stmt.executeUpdate("insert into mazzi values ('" + mazzo.toLowerCase() + "', '" + espansione.toUpperCase() + "', " + nr + "," + user.getID() + ")") + " modifiche");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return new ModelAndView("html/insertToDeck");
+        return new ModelAndView("redirect:html/insertToDeck");
     }
 
     @GetMapping("/")
@@ -277,7 +279,8 @@ public ModelAndView insertToDBOperation(
 
     @GetMapping("/uploadJsonDeck")
     public String showUploadForm() {
-        return "html/importFile";
+        if(user != null) return "html/importFile";
+        else return "redirect:html/login";
     }
 
     @GetMapping("/uploadStatus")
@@ -329,6 +332,110 @@ public ModelAndView insertToDBOperation(
         } catch (SQLException e) {
             System.out.println("connection");
             e.printStackTrace();
+        }
+    }
+
+    @GetMapping("/login")
+    public ModelAndView login(){
+        return new ModelAndView("html/login");
+    }
+
+    @GetMapping("/login/operation")
+    public String login(@RequestParam String userID, @RequestParam String password){
+        try(Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")){
+            try(Statement stmt = conn.createStatement()){
+                try(ResultSet rs = stmt.executeQuery("select * from utenti where nome = '" + userID + "' or mail = '" + userID + "'")){
+                    boolean notFound = true;
+                    while(rs.next() && notFound){
+                        if(rs.getString("password").equals(password)){
+                            notFound = false;
+                            user = new Utente(rs, rs.getRow());
+                        }
+                    }
+                }catch (SQLException e){
+                    System.out.println("select");
+                }
+            }catch (SQLException e){
+                System.out.println("statement");
+            }
+        }catch (SQLException e){
+            System.out.println("connection");
+        }
+        return "redirect:/profilo";
+    }
+
+    @GetMapping("/signIn")
+    public ModelAndView signIn(){
+        return new ModelAndView("html/signIn");
+    }
+
+    @GetMapping("/signIn/operation")
+    public ModelAndView signIn(@RequestParam String nome, @RequestParam String email, @RequestParam String password){
+        ModelAndView signIn = new ModelAndView("html/signIn");
+        try(Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")){
+            try(Statement stmt = conn.createStatement()){
+                boolean notFound = true;
+                try(ResultSet rs = stmt.executeQuery("select * from utenti where nome = '" + nome + "'")){
+                    while(rs.next() && notFound){
+                        notFound = false;
+                        signIn.addObject("result", "nome utente già in uso");
+                        System.out.println("nome utente già in uso");
+                    }
+                }catch (SQLException e){
+                    System.out.println("select nome");
+                }
+                if(notFound){
+                    try(ResultSet rs = stmt.executeQuery("select * from utenti where email = '" + email + "'")){
+                        while(rs.next() && notFound){
+                            notFound = false;
+                            signIn.addObject("result", "è già stato registrato un account con questa mail");
+                            System.out.println("è già stato registrato un account con questa mail");
+                        }
+                    }catch (SQLException e){
+                        System.out.println("select email");
+                    }
+                }
+                if(notFound){
+                    stmt.executeUpdate("insert into utenti (nome, email, password) value('" + nome + "', '" + email + "', '" + password + "')");
+                    signIn.addObject("result", "account registrato con successo");
+                    System.out.println("account registrato con successo");
+                }
+            }catch (SQLException e){
+                System.out.println("statement");
+                e.printStackTrace();
+            }
+        }catch (SQLException e){
+            System.out.println("connection");
+        }
+        return signIn;
+    }
+/**/
+    @GetMapping("profilo")
+    public ModelAndView profilo(){
+        if(user != null){
+            ModelAndView mav = new ModelAndView("html/profilo");
+            mav.addObject("nome", user.getNome());
+            mav.addObject("email", user.getEmail());
+            mav.addObject("password", user.getPassword());
+            try(Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")){
+            try(Statement stmt = conn.createStatement()){
+                try(ResultSet rs = stmt.executeQuery("select * from mazzi where codUtente = " + user.getID() + ";")){
+                    String[] mazzi = new String[0];
+                    while(rs.next()){
+
+                    }
+                }catch (SQLException e){
+                    System.out.println("select");
+                }
+            }catch (SQLException e){
+                System.out.println("statement");
+            }
+        }catch (SQLException e){
+            System.out.println("connection");
+        }
+            return mav;
+        }else{
+            return new ModelAndView("redirect:/login");
         }
     }
 
