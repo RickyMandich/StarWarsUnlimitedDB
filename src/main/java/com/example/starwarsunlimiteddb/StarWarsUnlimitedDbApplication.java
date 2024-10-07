@@ -131,11 +131,11 @@ public class StarWarsUnlimitedDbApplication {
     @RequestMapping("/mazzi")
     @ResponseBody
     public String mazzi(@RequestParam (required = false, defaultValue = "") String mazzo){
-        if(user == null) return "redirect:/login";
+        if(user == null) return "<a href=\"/login\" target=\"_blank\">login</a>";
         String body;
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")) {
             try (Statement stmt = conn.createStatement()) {
-                String select = "select m.mazzo, c.* from carte c, mazzi m where c.espansione  = m.espansione and c.numero = m.numero and m.mazzo like \"%" + mazzo + "%\" and codUtente = " + user.getID() + " order by c.ordineEspansione, c.numero;";
+                String select = "select m.mazzo, c.* from carte c, mazzi m where c.espansione  = m.espansione and c.numero = m.numero and m.mazzo like \"%" + mazzo + "%\" and codUtente = " + user.getID() + " order by m.mazzo, c.ordineEspansione, c.numero;";
                 try (ResultSet rs = stmt.executeQuery(select)) {
                     body = "<form action=\"\" method=\"GET\">" +
                             "<input value=\"" + mazzo + "\" type=\"text\" name=\"mazzo\" " +
@@ -260,12 +260,12 @@ public ModelAndView insertToDBOperation(
     @GetMapping("/insertToDeck")
 	public ModelAndView insertToDeck(){
         if(user!=null) return new ModelAndView("html/insertToDeck");
-        else return new ModelAndView("redirect:html/login");
+        else return new ModelAndView("redirect:/login");
 	}
 
     @GetMapping("/insertToDeck/operation")
     public ModelAndView insertToDeckOperation(@RequestParam String mazzo,@RequestParam String espansione,@RequestParam int nr){
-        if(user == null) return new ModelAndView("redirect:html/login");
+        if(user == null) return new ModelAndView("redirect:/login");
         System.out.println("form ricevuto");
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")) {
             try (Statement stmt = conn.createStatement()) {
@@ -275,7 +275,7 @@ public ModelAndView insertToDBOperation(
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return new ModelAndView("redirect:html/insertToDeck");
+        return new ModelAndView("redirect:/insertToDeck");
     }
 
     @GetMapping("/")
@@ -286,7 +286,7 @@ public ModelAndView insertToDBOperation(
     @GetMapping("/uploadJsonDeck")
     public String showUploadForm() {
         if(user != null) return "html/importFile";
-        else return "redirect:html/login";
+        else return "redirect:/login";
     }
 
     @GetMapping("/uploadStatus")
@@ -344,6 +344,12 @@ public ModelAndView insertToDBOperation(
     @GetMapping("/login")
     public ModelAndView login(){
         return new ModelAndView("html/login");
+    }
+
+    @GetMapping("/logout")
+    public ModelAndView logout(){
+        user = null;
+        return new ModelAndView("redirect:/login");
     }
 
     @GetMapping("/login/operation")
@@ -471,22 +477,22 @@ public ModelAndView insertToDBOperation(
                         String mazzo = "";
                         while(rs.next()){
                             if(!Pattern.compile("^<.*?>" + rs.getString("mazzo")).matcher(mazzo).find()){
-                                if(!mazzo.isEmpty()) mazzi = aggiungiCella(mazzi, mazzo.replace("</tr>$", ""));
-                                mazzo = "<td colspan=\"2\" th:text=\"${mazzo}\" class=\"deck-name\">" +
+                                if(!mazzo.isEmpty()) mazzi = aggiungiCella(mazzi, mazzo);
+                                mazzo = "<td colspan=\"2\" class=\"deck-name\">" +
                                         rs.getString("mazzo")+
                                         "</td>";
                                 System.out.print(rs.getString("mazzo") + "\t");
                                 for(int i=2;i<rs.getMetaData().getColumnCount();i++){
-                                    mazzo = mazzo.concat("<td colspan=\"2\" th:text=\"${mazzo}\" class=\"deck-name\"></td>");
+                                    mazzo = mazzo.concat("<td colspan=\"2\" class=\"deck-name\"></td>");
                                     System.out.print("\t");
                                 }
                                 System.out.println();
                                 mazzo = mazzo.concat("</tr>");
                             }
                             if(Pattern.compile("^<.*?>" + rs.getString("mazzo")).matcher(mazzo).find()){
-                                mazzo = mazzo.concat("<tr>");
+                                mazzo = mazzo.concat("<tr class=\"deck-card\">");
                                 for(int i=2;i<rs.getMetaData().getColumnCount();i++){
-                                    mazzo = mazzo.concat("<td colspan=\"2\" th:text=\"${mazzo}\" class=\"deck-name\">" +
+                                    mazzo = mazzo.concat("<td colspan=\"2\" class=\"deck-name\">" +
                                             rs.getString(i) +
                                             "</td>");
                                     System.out.print(rs.getString(i) + "\t");
@@ -495,6 +501,7 @@ public ModelAndView insertToDBOperation(
                                 mazzo = mazzo.concat("</tr>");
                             }
                         }
+                        if(!mazzo.isEmpty()) mazzi = aggiungiCella(mazzi, mazzo.replace("</tr>$", ""));
                         mav.addObject("mazzi", mazzi);
                     }catch (SQLException e){
                         System.out.println("select");

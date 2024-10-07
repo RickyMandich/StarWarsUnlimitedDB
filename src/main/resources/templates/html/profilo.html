@@ -1,16 +1,337 @@
 <!DOCTYPE html>
-<html lang="it">
-    <head>
-        <meta charset="UTF-8">
-        <title>Profilo</title>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profilo Utente</title>
+    <link rel="stylesheet" href="/css/profilo-css.css">
+</head>
+<body>
+    <div class="container">
+        <div class="profile-container">
+            <h1><a href="/profiloCloud">Profilo</a> Utente</h1>
 
-        <!-- variabili passate:
-            nome:String     l'username
-            email:String    la mail dell'utente
-                i mazzi (ancora da pensare a come passarli
-         -->
-    </head>
-    <body>
-        <a href="/profiloCloud">profilo</a>
-    </body>
+            <!-- Sezione informazioni utente -->
+            <div class="user-info">
+                <div class="info-group">
+                    <label>Nome Utente:</label>
+                    <span th:text="${nome}"></span>
+                </div>
+                <div class="info-group">
+                    <label>Email:</label>
+                    <span th:text="${email}"></span>
+                </div>
+            </div>
+
+            <!-- Sezione mazzi -->
+            <div class="decks-section">
+                <h2>I Tuoi Mazzi</h2>
+                <div class="decks-container">
+                    <table>
+                        <tr class="deck-header">
+                            <td colspan="2" class="deck-name">cad bane</td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                        </tr>
+                        <tr class="deck-card">
+                            <td colspan="2" class="deck-name">SHD</td>
+                            <td colspan="2" class="deck-name">14</td>
+                            <td colspan="2" class="deck-name">Cad Bane</td>
+                            <td colspan="2" class="deck-name">2</td>
+                            <td colspan="2" class="deck-name">1</td>
+                            <td colspan="2" class="deck-name">He Who Needs No Introduction</td>
+                            <td colspan="2" class="deck-name">Yellow</td>
+                            <td colspan="2" class="deck-name">Dark</td>
+                            <td colspan="2" class="deck-name">Leader</td>
+                            <td colspan="2" class="deck-name">UNDERWORLD * BOUNTY HUNTER</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">1</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">1</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">Common</td>
+                            <td colspan="2" class="deck-name">6</td>
+                            <td colspan="2" class="deck-name">8</td>
+                            <td colspan="2" class="deck-name">2</td>
+                            <td colspan="2" class="deck-name">0.01</td>
+                            <td colspan="2" class="deck-name">Marc Escachx</td>
+                            <td colspan="2" class="deck-name">1</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name">When you play an Underworld card: You may exhaust this leader. If you do, an opponent chooses a unit they control. Deal 1 damage to it. * When you play an UNDERWORLD card: You may choose an opponent. They choose a unit they control. Deal 2 damage to it. Use this ability only once each round.</td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name">Ground</td>
+                            <td colspan="2" class="deck-name">0</td>
+                        </tr>
+                        <tr class="deck-card">
+                            <td colspan="2" class="deck-name">SHD</td>
+                            <td colspan="2" class="deck-name">17</td>
+                            <td colspan="2" class="deck-name">Lando Calrissian</td>
+                            <td colspan="2" class="deck-name">2</td>
+                            <td colspan="2" class="deck-name">1</td>
+                            <td colspan="2" class="deck-name">With Impeccable Taste</td>
+                            <td colspan="2" class="deck-name">Yellow</td>
+                            <td colspan="2" class="deck-name">Light</td>
+                            <td colspan="2" class="deck-name">Leader</td>
+                            <td colspan="2" class="deck-name">UNDERWORLD</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">Rare</td>
+                            <td colspan="2" class="deck-name">4</td>
+                            <td colspan="2" class="deck-name">5</td>
+                            <td colspan="2" class="deck-name">2</td>
+                            <td colspan="2" class="deck-name">0.03</td>
+                            <td colspan="2" class="deck-name">Eric Hibbeler</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name">Ground</td>
+                            <td colspan="2" class="deck-name">1</td>
+                        </tr>
+                        <tr class="deck-header">
+                            <td colspan="2" class="deck-name">sabine</td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                        </tr>
+                        <tr class="deck-card">
+                            <td colspan="2" class="deck-name">SOR</td>
+                            <td colspan="2" class="deck-name">14</td>
+                            <td colspan="2" class="deck-name">Sabine Wren</td>
+                            <td colspan="2" class="deck-name">1</td>
+                            <td colspan="2" class="deck-name">1</td>
+                            <td colspan="2" class="deck-name">Galvanized Revolutionary</td>
+                            <td colspan="2" class="deck-name">Red</td>
+                            <td colspan="2" class="deck-name">Light</td>
+                            <td colspan="2" class="deck-name">Leader</td>
+                            <td colspan="2" class="deck-name">MANDALORIAN * REBEL * SPECTRE</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">1</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">Common</td>
+                            <td colspan="2" class="deck-name">4</td>
+                            <td colspan="2" class="deck-name">5</td>
+                            <td colspan="2" class="deck-name">2</td>
+                            <td colspan="2" class="deck-name">0.01</td>
+                            <td colspan="2" class="deck-name">Eslam Aboshady</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"> Deal 1 damage to each enemy base.</td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name">Ground</td>
+                            <td colspan="2" class="deck-name">1</td>
+                        </tr>
+                        <tr class="deck-card">
+                            <td colspan="2" class="deck-name">SOR</td>
+                            <td colspan="2" class="deck-name">14</td>
+                            <td colspan="2" class="deck-name">Sabine Wren</td>
+                            <td colspan="2" class="deck-name">1</td>
+                            <td colspan="2" class="deck-name">1</td>
+                            <td colspan="2" class="deck-name">Galvanized Revolutionary</td>
+                            <td colspan="2" class="deck-name">Red</td>
+                            <td colspan="2" class="deck-name">Light</td>
+                            <td colspan="2" class="deck-name">Leader</td>
+                            <td colspan="2" class="deck-name">MANDALORIAN * REBEL * SPECTRE</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">1</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">Common</td>
+                            <td colspan="2" class="deck-name">4</td>
+                            <td colspan="2" class="deck-name">5</td>
+                            <td colspan="2" class="deck-name">2</td>
+                            <td colspan="2" class="deck-name">0.01</td>
+                            <td colspan="2" class="deck-name">Eslam Aboshady</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"> Deal 1 damage to each enemy base.</td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name">Ground</td>
+                            <td colspan="2" class="deck-name">1</td>
+                        </tr>
+                        <tr class="deck-card">
+                            <td colspan="2" class="deck-name">SHD</td>
+                            <td colspan="2" class="deck-name">15</td>
+                            <td colspan="2" class="deck-name">Doctor Aphra</td>
+                            <td colspan="2" class="deck-name">2</td>
+                            <td colspan="2" class="deck-name">1</td>
+                            <td colspan="2" class="deck-name">Rapacious Archaeologist</td>
+                            <td colspan="2" class="deck-name">Yellow</td>
+                            <td colspan="2" class="deck-name">Dark</td>
+                            <td colspan="2" class="deck-name">Leader</td>
+                            <td colspan="2" class="deck-name">FRINGE</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">1</td>
+                            <td colspan="2" class="deck-name">Rare</td>
+                            <td colspan="2" class="deck-name">5</td>
+                            <td colspan="2" class="deck-name">5</td>
+                            <td colspan="2" class="deck-name">2</td>
+                            <td colspan="2" class="deck-name">0.01</td>
+                            <td colspan="2" class="deck-name">Sandra Chlewińska</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name">0</td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name"></td>
+                            <td colspan="2" class="deck-name">When the regroup phase starts: Discard a card from your deck. * While there are 5 or more different costs among cards in your discard pile, this unit gets +3/+0. * When Deployed: Choose 3 cards in your discard pile with different names. If you do, return 1 of them at random to your hand.</td>
+                            <td colspan="2" class="deck-name">Ground</td>
+                            <td colspan="2" class="deck-name">0</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <form action="/logout" class="logout-form">
+                <button type="submit" class="submit-btn">logout</button>
+            </form>
+        </div>
+    </div>
+</body>
 </html>
