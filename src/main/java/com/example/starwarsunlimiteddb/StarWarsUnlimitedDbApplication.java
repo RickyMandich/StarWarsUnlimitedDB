@@ -431,43 +431,11 @@ public ModelAndView insertToDBOperation(
         }
         return signIn;
     }
-/**/
+
     @GetMapping("profilo")
     public ModelAndView profilo(){
         if(user != null){
             ModelAndView mav = new ModelAndView("html/profilo");
-            mav.addObject("nome", user.getNome());
-            mav.addObject("email", user.getEmail());
-            try(Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")){
-            try(Statement stmt = conn.createStatement()){
-                try(ResultSet rs = stmt.executeQuery("select m.mazzo, c.* from carte c, mazzi m where codUtente = " + user.getID() + " and c.espansione = m.espansione and c.numero = m.numero order by c.ordineEspansione, c.numero;")){
-                    String[] mazzi = new String[0];
-                    while(rs.next()){
-                        /*
-                        * todo:
-                        *  creare l'elenco dei mazzi;
-                        *  creare il file html a cui è legato questo model and view
-                        *  */
-                    }
-                }catch (SQLException e){
-                    System.out.println("select");
-                }
-            }catch (SQLException e){
-                System.out.println("statement");
-            }
-        }catch (SQLException e){
-            System.out.println("connection");
-        }
-            return mav;
-        }else{
-            return new ModelAndView("redirect:/login");
-        }
-    }
-
-    @GetMapping("profiloCloud")
-    public ModelAndView profiloCloud(){
-        if(user != null){
-            ModelAndView mav = new ModelAndView("html/profilo-html");
             mav.addObject("nome", user.getNome());
             mav.addObject("email", user.getEmail());
             try(Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")){
