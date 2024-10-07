@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 @SpringBootApplication
 @Controller
@@ -123,7 +124,12 @@ public class StarWarsUnlimitedDbApplication {
         return body;
     }
 
+
+    /*
+    * todo:
+    *   convertire tutti i metodi principali da String a ModelAndView*/
     @RequestMapping("/mazzi")
+    @ResponseBody
     public String mazzi(@RequestParam (required = false, defaultValue = "") String mazzo){
         if(user == null) return "redirect:/login";
         String body;
@@ -247,7 +253,7 @@ public ModelAndView insertToDBOperation(
     } catch (SQLException e) {
         throw new RuntimeException(e);
     }finally {
-        return insertToDB();
+        return new ModelAndView("redirect:/insertToDB");
     }
 }
 
@@ -428,7 +434,7 @@ public ModelAndView insertToDBOperation(
             mav.addObject("email", user.getEmail());
             try(Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")){
             try(Statement stmt = conn.createStatement()){
-                try(ResultSet rs = stmt.executeQuery("select * from mazzi where codUtente = " + user.getID() + ";")){
+                try(ResultSet rs = stmt.executeQuery("select m.mazzo, c.* from carte c, mazzi m where codUtente = " + user.getID() + " and c.espansione = m.espansione and c.numero = m.numero order by c.ordineEspansione, c.numero;")){
                     String[] mazzi = new String[0];
                     while(rs.next()){
                         /*
@@ -446,6 +452,59 @@ public ModelAndView insertToDBOperation(
         }catch (SQLException e){
             System.out.println("connection");
         }
+            return mav;
+        }else{
+            return new ModelAndView("redirect:/login");
+        }
+    }
+
+    @GetMapping("profiloCloud")
+    public ModelAndView profiloCloud(){
+        if(user != null){
+            ModelAndView mav = new ModelAndView("html/profilo-html");
+            mav.addObject("nome", user.getNome());
+            mav.addObject("email", user.getEmail());
+            try(Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")){
+                try(Statement stmt = conn.createStatement()){
+                    try(ResultSet rs = stmt.executeQuery("select m.mazzo, c.* from carte c, mazzi m where codUtente = " + user.getID() + " and c.espansione = m.espansione and c.numero = m.numero order by m.mazzo, c.ordineEspansione, c.numero;")){
+                        String[] mazzi = new String[0];
+                        String mazzo = "";
+                        while(rs.next()){
+                            if(!Pattern.compile("^<.*?>" + rs.getString("mazzo")).matcher(mazzo).find()){
+                                if(!mazzo.isEmpty()) mazzi = aggiungiCella(mazzi, mazzo.replace("</tr>$", ""));
+                                mazzo = "<td colspan=\"2\" th:text=\"${mazzo}\" class=\"deck-name\">" +
+                                        rs.getString("mazzo")+
+                                        "</td>";
+                                System.out.print(rs.getString("mazzo") + "\t");
+                                for(int i=2;i<rs.getMetaData().getColumnCount();i++){
+                                    mazzo = mazzo.concat("<td colspan=\"2\" th:text=\"${mazzo}\" class=\"deck-name\"></td>");
+                                    System.out.print("\t");
+                                }
+                                System.out.println();
+                                mazzo = mazzo.concat("</tr>");
+                            }
+                            if(Pattern.compile("^<.*?>" + rs.getString("mazzo")).matcher(mazzo).find()){
+                                mazzo = mazzo.concat("<tr>");
+                                for(int i=2;i<rs.getMetaData().getColumnCount();i++){
+                                    mazzo = mazzo.concat("<td colspan=\"2\" th:text=\"${mazzo}\" class=\"deck-name\">" +
+                                            rs.getString(i) +
+                                            "</td>");
+                                    System.out.print(rs.getString(i) + "\t");
+                                }
+                                System.out.println();
+                                mazzo = mazzo.concat("</tr>");
+                            }
+                        }
+                        mav.addObject("mazzi", mazzi);
+                    }catch (SQLException e){
+                        System.out.println("select");
+                    }
+                }catch (SQLException e){
+                    System.out.println("statement");
+                }
+            }catch (SQLException e){
+                System.out.println("connection");
+            }
             return mav;
         }else{
             return new ModelAndView("redirect:/login");

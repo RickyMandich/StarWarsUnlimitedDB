@@ -30,12 +30,8 @@
     </div>
 </body>
 <script>
-    function sleep(millis) {
-        const start = Date.now();
-        const end = start + millis;
-        while (Date.now() < end) {
-            console.log(`Tempo rimanente: ${end - Date.now()} ms`);
-        }
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 
 

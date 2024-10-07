@@ -33,12 +33,17 @@
     </div>
 </body>
 <script>
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
     document.addEventListener("DOMContentLoaded", function() {
         if(document.getElementById("result").innerHTML === "account registrato con successo"){
             document.getElementById("result").style.display = "inline-block";
             document.getElementById("result").style.backgroundColor = 'green';
-            window.location.href = "http://localhost:66/profilo";
-        }else{
+            sleep(3000);
+            window.location.href = "http://localhost:66/login";
+        }else if(document.getElementById("result").innerHTML !== ""){
             document.getElementById("result").style.display = "inline-block";
             document.getElementById("result").style.backgroundColor = 'red';
         }
