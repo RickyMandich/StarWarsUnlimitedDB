@@ -28,7 +28,7 @@
                 <h2>I Tuoi Mazzi</h2>
                 <div class="decks-container">
                     <table>
-                        <tr th:each="mazzo:${mazzi}" class="deck-header" th:text="${mazzo}">
+                        <tr th:each="mazzo:${mazzi}" class="deck-header" th:utext="${mazzo}">
                         </tr>
                     </table>
                 </div>

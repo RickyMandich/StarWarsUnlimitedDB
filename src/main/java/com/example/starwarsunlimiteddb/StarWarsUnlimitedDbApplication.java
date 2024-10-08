@@ -19,10 +19,10 @@ import java.util.regex.Pattern;
 @Controller
 public class StarWarsUnlimitedDbApplication {
 
+    Utente user = null;
+
     @Autowired
     private ObjectMapper objectMapper;
-
-    Utente user = null;
 
     public String[][] add(String[][] tratti, String tratto){
         if(tratti.length == 0){
@@ -329,8 +329,8 @@ public ModelAndView insertToDBOperation(
             try(Statement stmt = conn.createStatement()){
                 String json = jsonData.toString();
                 Deck myDeck = new Deck(json);
-                System.out.println(myDeck.getInsertSql());
-                System.out.println("ho fatto " + stmt.executeUpdate(myDeck.getInsertSql()) + " modifiche");
+                System.out.println(myDeck.getInsertSql(user));
+                System.out.println("ho fatto " + stmt.executeUpdate(myDeck.getInsertSql(user)) + " modifiche");
             }catch (SQLException e){
                 System.out.println("statement");
                 e.printStackTrace();

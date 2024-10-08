@@ -103,12 +103,6 @@ public class Deck {
         return newCards;
     }
 
-    public static void main(String[] args){
-        Deck deck = new Deck("{metadata={name=Cad Bane verde, author=Ssppoocckk}, leader={id=SHD_014, count=1}, secondleader=null, base={id=SHD_022, count=1}, deck=[{id=SHD_229, count=3}, {id=SHD_086, count=3}, {id=SHD_231, count=3}, {id=SHD_210, count=3}, {id=SHD_225, count=1}, {id=SHD_121, count=2}, {id=SHD_129, count=2}, {id=SOR_209, count=2}, {id=SHD_211, count=3}, {id=SHD_085, count=3}, {id=SOR_213, count=3}, {id=SHD_187, count=3}, {id=SHD_089, count=2}, {id=SHD_212, count=3}, {id=SOR_207, count=3}, {id=SHD_219, count=3}, {id=SHD_209, count=3}, {id=SHD_193, count=1}, {id=SHD_091, count=2}, {id=SHD_080, count=3}, {id=SHD_215, count=2}, {id=SHD_255, count=3}], sideboard=[]}");
-        System.out.println(deck);
-        System.out.println(deck.getInsertSql());
-    }
-
     public static class Card {
         public String expansion;
         public int number;
@@ -142,10 +136,10 @@ public class Deck {
         return info;
     }
 
-    public String getInsertSql(){
+    public String getInsertSql(Utente user){
         String insert = "insert into mazzi\nvalues";
         for(Card c:carte){
-            insert = insert.concat("('" + nome + "','" + c.expansion + "'," + c.number + "),\n");
+            insert = insert.concat("('" + nome + "','" + c.expansion + "'," + c.number + "," + user.getID() + "),\n");
         }
         char[] array = insert.toCharArray();
         array[array.length-2] = ';';
