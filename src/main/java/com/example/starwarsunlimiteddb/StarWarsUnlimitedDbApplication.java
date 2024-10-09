@@ -353,8 +353,9 @@ public ModelAndView insertToDBOperation(
     }
 
     @GetMapping("/login/operation")
-    public ModelAndView login(@RequestParam String userID, @RequestParam String password){
+    public ModelAndView login(@RequestParam String userID, @RequestParam String password) throws InterruptedException{
         ModelAndView login = new ModelAndView("html/login");
+        boolean accesso = false;
         try(Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")){
             try(Statement stmt = conn.createStatement()){
                 try(ResultSet rs = stmt.executeQuery("select * from utenti where nome = '" + userID + "' or email = '" + userID + "'")){
@@ -365,6 +366,7 @@ public ModelAndView insertToDBOperation(
                         if(rs.getString("password").equals(password)){
                             notFound = false;
                             user = new Utente(rs.getString("nome"), rs.getInt("id"), rs.getString("email"), rs.getString("password"));
+                            accesso = true;
                             login.addObject("result", "accesso eseguito con successo");
                         }else{
                             login.addObject("result", "password errata");
@@ -383,6 +385,7 @@ public ModelAndView insertToDBOperation(
         }catch (SQLException e){
             System.out.println("connection");
         }
+        if(accesso) return new ModelAndView("redirect:/profilo");
         return login;
     }
 
@@ -471,6 +474,7 @@ public ModelAndView insertToDBOperation(
                         }
                         if(!mazzo.isEmpty()) mazzi = aggiungiCella(mazzi, mazzo.replace("</tr>$", ""));
                         mav.addObject("mazzi", mazzi);
+                        System.out.println("<tr class=\"deck-header\">" + join(mazzi, "</tr><tr class=\"deck-header\">") + "</tr>");
                     }catch (SQLException e){
                         System.out.println("select");
                     }

@@ -73,19 +73,18 @@ table {
     border-collapse: collapse;
 }
 
-.deck-header {
-    background-color: #6b98c1;
-}
-
 .deck-name {
     padding: 12px 15px;
     color: white;
     font-weight: bold;
 }
 
-.deck-card {
-    max-height: 100px;
+.deck-card td {
+    height: 100px;
     background-color: #c3c3c3;
+    padding: 8px 15px;
+    color: #333;
+    white-space: nowrap;
 }
 
 .card-name {
@@ -135,4 +134,27 @@ table {
 
 .decks-container::-webkit-scrollbar-thumb:hover {
     background: #5a82a7;
+}
+
+/* Stile base per l'header del deck */
+.deck-header {
+    background-color: #6b98c1;
+    cursor: pointer;
+}
+
+/* Nascondi il radio button */
+.deck-header input[type="radio"] {
+    display: none;
+}
+
+/* Stile quando l'header è selezionato */
+.deck-header:has(input:checked) {
+    background-color: #5a82a7;
+}
+
+/* Nascondi tutte le carte di default */
+.deck-card {
+    max-height: 100px;
+    background-color: #c3c3c3;
+    display: none;
 }

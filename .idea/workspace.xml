@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b43c53c-3786-4618-8e35-859e19136beb" name="Changes" comment="aggiornamento 2024 10 07 15:37">
+    <list default="true" id="9b43c53c-3786-4618-8e35-859e19136beb" name="Changes" comment="aggiornamento 2024 10 08 11:24">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/javascript/profilo.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/fileHashes/fileHashes.bin" afterDir="false" />
@@ -13,16 +14,18 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/starwarsunlimiteddb/Deck$Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/starwarsunlimiteddb/Deck$Card.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/starwarsunlimiteddb/Deck.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/starwarsunlimiteddb/Deck.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/starwarsunlimiteddb/StarWarsUnlimitedDbApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/starwarsunlimiteddb/StarWarsUnlimitedDbApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/html/profilo.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/html/profilo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/html/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/html/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/html/signIn.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/html/signIn.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Deck$Card.class.uniqueId2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Deck.class.uniqueId1" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/StarWarsUnlimitedDbApplication.class.uniqueId0" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/StarWarsUnlimitedDbApplication.class.uniqueId0" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/starwarsunlimiteddb/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/starwarsunlimiteddb/Deck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/starwarsunlimiteddb/StarWarsUnlimitedDbApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/starwarsunlimiteddb/StarWarsUnlimitedDbApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/profilo.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/profilo.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/html/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/html/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/html/profilo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/html/profilo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/html/signIn.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/html/signIn.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +65,7 @@
       <list>
         <option value="Class" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -85,48 +89,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.CreazioneElencoTratti.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Deck.executor&quot;: &quot;Profiler#1&quot;,
-    &quot;Application.Test.executor&quot;: &quot;Run&quot;,
-    &quot;Application.com.tuodominio.Test.executor&quot;: &quot;Run&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Gradle.Build StarWarsUnlimitedDB.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.C:/Users/Riccardo/IdeaProjects/StarWarsUnlimitedDB/WebScraping.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.StarWarsUnlimitedDB [:com.example.starwarsunlimiteddb.CreazioneElencoTratti.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.StarWarsUnlimitedDB [:com.example.starwarsunlimiteddb.Deck.main()].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.StarWarsUnlimitedDbApplication.executor&quot;: &quot;Run&quot;,
-    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Users/Riccardo/IdeaProjects/StarWarsUnlimitedDB/src/main/java/com/example/starwarsunlimiteddb&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Riccardo/IdeaProjects/StarWarsUnlimitedDB/src/main/resources/templates/html&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.CreazioneElencoTratti.executor": "Run",
+    "Application.Deck.executor": "Profiler#1",
+    "Application.Test.executor": "Run",
+    "Application.com.tuodominio.Test.executor": "Run",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Gradle.Build StarWarsUnlimitedDB.executor": "Run",
+    "Gradle.C:/Users/Riccardo/IdeaProjects/StarWarsUnlimitedDB/WebScraping.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.StarWarsUnlimitedDB [:com.example.starwarsunlimiteddb.CreazioneElencoTratti.main()].executor": "Run",
+    "Gradle.StarWarsUnlimitedDB [:com.example.starwarsunlimiteddb.Deck.main()].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.StarWarsUnlimitedDbApplication.executor": "Run",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "C:/Users/Riccardo/IdeaProjects/StarWarsUnlimitedDB/src/main/java/com/example/starwarsunlimiteddb",
+    "last_opened_file_path": "C:/Users/Riccardo/IdeaProjects/StarWarsUnlimitedDB/src/main/resources/templates/html",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Riccardo\IdeaProjects\StarWarsUnlimitedDB\src\main\resources\templates\html" />
@@ -253,7 +257,9 @@
       <workItem from="1728301740512" duration="6297000" />
       <workItem from="1728312267819" duration="3374000" />
       <workItem from="1728368261981" duration="1606000" />
-      <workItem from="1728371102066" duration="1045000" />
+      <workItem from="1728371102066" duration="1490000" />
+      <workItem from="1728398637593" duration="125000" />
+      <workItem from="1728455140640" duration="9090000" />
     </task>
     <task id="LOCAL-00001" summary="aggiornamento 2024 09 12 23:38">
       <option name="closed" value="true" />
@@ -423,7 +429,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728308250259</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="aggiornamento 2024 10 08 11:24">
+      <option name="closed" value="true" />
+      <created>1728379486323</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1728379486323</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -461,6 +475,7 @@
     <MESSAGE value="aggiornamento 2024 10 07 13:04" />
     <MESSAGE value="aggiornamento 2024 10 07 15:34" />
     <MESSAGE value="aggiornamento 2024 10 07 15:37" />
-    <option name="LAST_COMMIT_MESSAGE" value="aggiornamento 2024 10 07 15:37" />
+    <MESSAGE value="aggiornamento 2024 10 08 11:24" />
+    <option name="LAST_COMMIT_MESSAGE" value="aggiornamento 2024 10 08 11:24" />
   </component>
 </project>
