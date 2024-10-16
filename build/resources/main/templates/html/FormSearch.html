@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+      <meta charset="UTF-8">
+      <title>InsertToDB</title>
+      <script src="insertToDB.js"></script>
+  </head>
+<!-- todo:
+     - fare il div abilità composto da:
+        - contrabbando (checkbox) (text) sistemare il warning
+-->
+  <body>
+    <form action="insertToDB/operation" id="mainForm">
+        <div id="nome">
+            unica
+            <input type="checkbox" name="unica">
+            <br>
+            nome: <input type="text" name="nome" placeholder="nome">
+            <br>
+            Titolo: <input type="text" name="titolo" placeholder="titolo">
+            <br>
+        <hr>
+        </div>
+        <div id="set">
+            set:
+            <select name="espansione">
+                <option value="" disabled selected> --seleziona-- </option>
+                <option value="SOR;1"> spark of rebellion </option>
+                <option value="SHD;2"> shadow of the galaxy </option>
+                <option value="TWI;3"> twilight of the republic </option>
+            </select>
+            <br>
+            numero:
+            <input type="number" name="numero">
+        <hr>
+        </div>
+        <div id="aspetto">
+            aspetto:
+            <select name="aspettoPrimario">
+                <option value="">--seleziona--</option>
+                <option>Rosso</option>
+                <option>Giallo</option>
+                <option>Verde</option>
+                <option>Blu</option>
+                <option>Chiaro</option>
+                <option>Scuro</option>
+            </select>
+            <select name="aspettoSecondario">
+                <option value="">--seleziona--</option>
+                <option>Rosso</option>
+                <option>Giallo</option>
+                <option>Verde</option>
+                <option>Blu</option>
+                <option>Chiaro</option>
+                <option>Scuro</option>
+            </select>
+        <hr>
+        </div>
+        <div id="tipo">
+            tipo:
+            <select id="selectTipo" name="tipo">
+                <option value="" disabled selected> --seleziona-- </option>
+                <option>leader</option>
+                <option>base</option>
+                <option>unità</option>
+                <option>evento</option>
+                <option>miglioria</option>
+            </select>
+            <hr>
+        </div>
+        <div id="tratti">
+            tratti:
+            <input type="text" placeholder="filtro" id="filtroTratto" enterkeyhint="enter" style="margin-bottom: 8px">
+            <input type="button" value="filtra" id="launchFiltro" onclick="filtra()">
+            <br>
+            <div>
+                <span class="tratto" th:each="tratto:${tratti}">
+                    <input type="checkbox" th:value="${tratto}" name="tratti[]"> <p th:text="${tratto}"></p>
+                </span>
+            </div>
+        <hr>
+        </div>
+        <div id="abilita">
+            <span>
+                <input type="checkbox" name="imboscata" id="imboscata">
+                Imboscata
+            </span>
+            <span>
+                <input type="checkbox" name="tenacia" id="tenacia">
+                Tenacia
+            </span>
+            <span>
+                <input type="checkbox" name="sopraffazione" id="sopraffazione">
+                Sopraffazione
+            </span>
+            <span>
+                <input type="checkbox" name="sabotatore" id="sabotatore">
+                Sabotatore
+            </span>
+            <span>
+                <input type="checkbox" name="sentinella" id="sentinella">
+                Sentinella
+            </span>
+            <span>
+                <input type="checkbox" name="schermata" id="schermata">
+                Schermata
+            </span>
+            <span>
+                <input type="checkbox" name="incursione" id="Incursione" onclick="toggleVisibilityInput('Incursione')">
+                Incursione
+                <input type="number" name="valoreIncursione" id="valoreIncursione" style="display: none">
+            </span>
+            <span>
+                <input type="checkbox" name="recupero" id="Recupero" onclick="toggleVisibilityInput('Recupero')">
+                Recupero
+                <input type="number" name="valoreRecupero" id="valoreRecupero" style="display: none">
+            </span>
+            <span>
+                <input type="checkbox" name="contrabbando" id="Contrabbando" onclick="toggleVisibilityInput('Contrabbando')">
+                Contrabbando
+                <input type="text" name="valoreContrabbando" id="valoreContrabbando" style="display: none"
+                       onkeyup="if (!/^([0-9]+[RGVB]?[CS]?)?$/.test(this.value)) warning(this.value)">
+            </span>
+            <span>
+                <input type="checkbox" name="quandoGiocata" id="QuandoGiocata" onclick="toggleVisibilityInput('QuandoGiocata')">
+                Quando giocata
+                <input type="text" name="valoreQuandoGiocata" id="valoreQuandoGiocata" style="display: none">
+            </span>
+            <span>
+                <input type="checkbox" name="taglia" id="Taglia" onclick="toggleVisibilityInput('Taglia')">
+                Taglia
+                <input type="text" name="valoreTaglia" id="valoreTaglia" style="display: none">
+            </span>
+            <span>
+                <input type="checkbox" name="quandoSconfitta" id="QuandoSconfitta" onclick="toggleVisibilityInput('QuandoSconfitta')">
+                Quando sconfitta
+                <input type="text" name="valoreQuandoSconfitta" id="valoreQuandoSconfitta" style="display: none">
+            </span>
+            <span>
+                <input type="checkbox" name="quandoAttacca" id="QuandoAttacca" onclick="toggleVisibilityInput('QuandoAttacca')">
+                Quando attacca
+                <input type="text" name="valoreQuandoAttacca" id="valoreQuandoAttacca" style="display: none">
+            </span>
+            <span>
+                <input type="checkbox" name="descrizioneEvento" id="DescrizioneEvento" onclick="toggleVisibilityInput('DescrizioneEvento')">
+                Descrizione evento
+                <input type="text" name="valoreDescrizioneEvento" id="valoreDescrizioneEvento" style="display: none">
+            </span>
+            <span>
+                <input type="checkbox" name="azione" id="azione" onclick="toggleVisibilityInput('azione')">
+                azione
+                <input type="text" name="valoreAzione" id="valoreAzione">
+            </span>
+        <hr>
+        </div>
+        <div id="arena" style="display: none">
+            arena:
+            <select name="arena" id="selectArena">
+                <option disabled selected value="">--seleziona--</option>
+                <option value="spazio">spazio</option>
+                <option value="terra">terra</option>
+            </select>
+            <hr>
+        </div>
+        <div id="statistiche">
+            <div id="costo" class="statistica">
+                costo:
+                <input type="number" name="costo" id="valoreCosto">
+            </div>
+            <div id="vita" class="statistica">
+                vita:
+                <input type="number" name="vita" id="valoreVita">
+            </div>
+            <div id="potenza" class="statistica">
+                potenza:
+                <input type="number" name="potenza" id="valorePotenza">
+            </div>
+            <hr>
+        </div>
+        <div id="rarita">
+            rarità:
+            <select name="rarita">
+                <option disabled selected value="">--seleziona--</option>
+                <option>comune</option>
+                <option>non comune</option>
+                <option>rara</option>
+                <option>leggendaria</option>
+                <option>speciale</option>
+            </select>
+        <hr>
+        </div>
+        <div id="prezzo">
+            prezzo:
+            <input type="number" step="0.01" name="prezzo" id="valorePrezzo">
+        <hr>
+        </div>
+        <div id="artista">
+            artista:
+            <input type="text" name="artista" id="valoreArtista">
+        </div>
+        <div id="submit">
+            <input type="submit" value="carica carta">
+        </div>
+    </form>
+  </body>
+    <style>
+        #statistiche>hr{
+            position: relative;
+            transform: translate(0, 8px);
+            margin-bottom: 16px;
+        }
+
+        .tratto {
+            width: 100px;
+            padding: 5px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            vertical-align: top;
+            box-sizing: border-box;
+
+            border: 1px solid black;
+            background: rgb(0, 255, 0);
+            /**/
+        }
+
+        hr{
+            box-sizing: border-box;
+            border: 1px solid black;
+        }
+
+        div#abilita>span{
+            display: block;
+        }
+
+        .statistica{
+            float: left;
+            width: 33.3%;
+        }
+    </style>
+</html>

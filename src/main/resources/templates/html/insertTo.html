@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <title>Inserto to Deck</title>
+    </head>
+    <body>
+        <form action="/insertToDeck/operation">
+            <span id="deck">
+                Inserisci il nome del Deck: <input type="text" name="mazzo" placeholder="Nome Deck">
+                <br>
+            </span>
+            <span id="set">
+                Inserisci l'acronimo del set: <input type="text" minlength="3" maxlength="3" name="espansione" placeholder="Set">
+                <br>
+            </span>
+            <span id="numero">
+                Inserisci il numero della carta: <input type="number" name="nr" placeholder="Nome Deck">
+                <br>
+            </span>
+            <input type="submit" value="submit">
+        </form>
+    <span id="operazione" th:text="${operazione}"></span>
+    </body>
+</html>
+<style>
+    #operazione{
+        display: none;
+    }
+</style>
+<script>
+    if(document.getElementById("operazione").innerHTML === "collezione"){
+        document.getElementById("deck").style.display = "none";
+    }
+</script>

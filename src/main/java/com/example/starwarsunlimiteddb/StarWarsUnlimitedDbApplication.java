@@ -259,22 +259,24 @@ public ModelAndView insertToDBOperation(
 
     @GetMapping("/insertToDeck")
 	public ModelAndView insertToDeck(){
-        if(user!=null) return new ModelAndView("html/insertToDeck");
-        else return new ModelAndView("redirect:/login");
+        if(user!=null){
+            ModelAndView deck = new ModelAndView("html/insertTo");
+            deck.addObject("operazione", "deck");
+            return deck;
+        } else return new ModelAndView("redirect:/login");
 	}
 
     @GetMapping("/insertToDeck/operation")
-    public ModelAndView insertToDeckOperation(@RequestParam String mazzo,@RequestParam String espansione,@RequestParam int nr){
+    public ModelAndView insertToDeckOperation(@RequestParam (required = false, defaultValue = "collezione") String mazzo,@RequestParam String espansione,@RequestParam int nr){
         if(user == null) return new ModelAndView("redirect:/login");
-        System.out.println("form ricevuto");
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")) {
             try (Statement stmt = conn.createStatement()) {
-                System.out.println("sono dentro il try");
                 System.out.println("ho applicato " + stmt.executeUpdate("insert into mazzi values ('" + mazzo.toLowerCase() + "', '" + espansione.toUpperCase() + "', " + nr + "," + user.getID() + ")") + " modifiche");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        if(mazzo.equals("collezione")) return new ModelAndView("redirect:/insertToCollezione");
         return new ModelAndView("redirect:/insertToDeck");
     }
 
@@ -443,7 +445,7 @@ public ModelAndView insertToDBOperation(
             mav.addObject("email", user.getEmail());
             try(Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")){
                 try(Statement stmt = conn.createStatement()){
-                    try(ResultSet rs = stmt.executeQuery("select m.mazzo, c.* from carte c, mazzi m where codUtente = " + user.getID() + " and c.espansione = m.espansione and c.numero = m.numero order by m.mazzo, c.ordineEspansione, c.numero;")){
+                    try(ResultSet rs = stmt.executeQuery("select m.mazzo, c.* from carte c, mazzi m where codUtente = " + user.getID() + " and c.espansione = m.espansione and c.numero = m.numero order by m.mazzo, c.uscita, c.numero;")){
                         String[] mazzi = new String[0];
                         String mazzo = "";
                         while(rs.next()){
@@ -452,12 +454,9 @@ public ModelAndView insertToDBOperation(
                                 mazzo = "<td colspan=\"2\" class=\"deck-name\">" +
                                         rs.getString("mazzo")+
                                         "</td>";
-                                System.out.print(rs.getString("mazzo") + "\t");
                                 for(int i=2;i<rs.getMetaData().getColumnCount();i++){
                                     mazzo = mazzo.concat("<td colspan=\"2\" class=\"deck-name\"></td>");
-                                    System.out.print("\t");
                                 }
-                                System.out.println();
                                 mazzo = mazzo.concat("</tr>");
                             }
                             if(Pattern.compile("^<.*?>" + rs.getString("mazzo")).matcher(mazzo).find()){
@@ -466,17 +465,15 @@ public ModelAndView insertToDBOperation(
                                     mazzo = mazzo.concat("<td colspan=\"2\" class=\"deck-name\">" +
                                             rs.getString(i) +
                                             "</td>");
-                                    System.out.print(rs.getString(i) + "\t");
                                 }
-                                System.out.println();
                                 mazzo = mazzo.concat("</tr>");
                             }
                         }
                         if(!mazzo.isEmpty()) mazzi = aggiungiCella(mazzi, mazzo.replace("</tr>$", ""));
                         mav.addObject("mazzi", mazzi);
-                        System.out.println("<tr class=\"deck-header\">" + join(mazzi, "</tr><tr class=\"deck-header\">") + "</tr>");
                     }catch (SQLException e){
                         System.out.println("select");
+                        e.printStackTrace();
                     }
                 }catch (SQLException e){
                     System.out.println("statement");
@@ -489,6 +486,15 @@ public ModelAndView insertToDBOperation(
             return new ModelAndView("redirect:/login");
         }
     }
+
+    @GetMapping("/insertToCollezione")
+	public ModelAndView insertToCollezione(){
+        if(user!=null){
+            ModelAndView collection = new ModelAndView("html/insertTo");
+            collection.addObject("operazione", "collezione");
+            return collection;
+        } else return new ModelAndView("redirect:/login");
+	}
 
     public static void main(String[] args){SpringApplication.run(StarWarsUnlimitedDbApplication.class, args);}
 }
