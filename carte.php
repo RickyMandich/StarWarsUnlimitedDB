@@ -10,8 +10,8 @@
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
-        echo "Connected successfully";
-        $resultSet = $conn->query("select * from carte");
+        $resultSet = $conn->query("select * from carte where nome like '%" . ($_GET["nome"] ?? "") . "%' order by uscita, espansione, numero");
+        $numeri = [];
         $rs = [];
         if( $resultSet->num_rows > 0) {
             $primo = true;
@@ -25,6 +25,7 @@
                     $rs[0] = $line;
                     $line = [];
                 }
+                $numeri[$row["espansione"]] = strlen((string) $row["numero"]);
                 foreach($row as $key => $value) array_push($line, $value);
                 array_push($rs, $line);
             }
@@ -32,6 +33,10 @@
         $conn->close();
     ?>
     <body>
+        <form action="carte.php" method="get">
+            <input type="text" name="nome">
+            <input type="submit" value="cerca">
+        </form>
         <table border="">
             <thead>
                 <tr>
@@ -47,7 +52,9 @@
                     <tr>
                         <?php foreach($rs[$i] as $value): ?>
                             <td>
+                                <a href="<?php echo "https://www.swudb.com/card/" . $rs[$i][0] . "/" . sprintf("%0" . $numeri[$rs[$i][0]] . "d", $rs[$i][1]);?>" target="_blank">
                                 <?php echo $value; ?>
+                                </a>
                             </td>
                         <?php endforeach; ?>
                     </tr>
