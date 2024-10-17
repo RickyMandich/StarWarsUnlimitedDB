@@ -1,0 +1,12 @@
+# todo list
+- [ ] home
+- [ ] carte
+- [ ] mazzi
+- [ ] insertToDeck
+- [ ] insertToCollezione
+- [ ] uploadJsonDeck
+- [ ] logIn
+- [ ] signIn
+- [ ] logOut
+- [ ] rimuoviCarta
+- [ ] profilo
