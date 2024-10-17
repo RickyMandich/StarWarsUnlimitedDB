@@ -278,6 +278,7 @@ public ModelAndView insertToDBOperation(
         }
         if(mazzo.equals("collezione")) return new ModelAndView("redirect:/insertToCollezione");
         return new ModelAndView("redirect:/insertToDeck");
+        //return new ModelAndView("html/insertTo");
     }
 
     @GetMapping("/")
@@ -437,7 +438,26 @@ public ModelAndView insertToDBOperation(
         return signIn;
     }
 
-    @GetMapping("profilo")
+    @GetMapping("/elimina")
+    public String elimina(@RequestParam String mazzo, @RequestParam String set, @RequestParam int numero, @RequestParam String from){
+        try(Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/starwarsunlimited", "root", "Minecraft35?")){
+            try(Statement stmt = conn.createStatement()){
+                int modifiche = stmt.executeUpdate("delete from mazzi where mazzo = '" + mazzo + "' and espansione = '" + set + "' and numero ='" + numero + "'");
+                while(modifiche>1){
+                    stmt.executeUpdate("insert into mazzi values ('" + mazzo + "', '" + set.toUpperCase() + "', " + numero + "," + user.getID() + ")");
+                    modifiche--;
+                }
+            }catch (SQLException e){
+                System.out.println("statement");
+                throw e;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return "redirect:/" + from;
+    }
+
+    @GetMapping("/profilo")
     public ModelAndView profilo(){
         if(user != null){
             ModelAndView mav = new ModelAndView("html/profilo");
@@ -455,14 +475,23 @@ public ModelAndView insertToDBOperation(
                                         rs.getString("mazzo")+
                                         "</td>";
                                 for(int i=2;i<rs.getMetaData().getColumnCount();i++){
-                                    mazzo = mazzo.concat("<td colspan=\"2\" class=\"deck-name\"></td>");
+                                    mazzo = mazzo.concat("<td class=\"deck-name\"></td>");
                                 }
                                 mazzo = mazzo.concat("</tr>");
                             }
                             if(Pattern.compile("^<.*?>" + rs.getString("mazzo")).matcher(mazzo).find()){
                                 mazzo = mazzo.concat("<tr class=\"deck-card\">");
+                                mazzo = mazzo.concat("<td class=\"deck-name\">" +
+                                        "<form action='/elimina'>" +
+                                        "<input type='hidden' name='mazzo' value='" + rs.getString("mazzo") + "'>" +
+                                        "<input type='hidden' name='set' value='" + rs.getString("espansione") + "'>" +
+                                        "<input type='hidden' name='numero' value='" + rs.getInt("numero") + "'>" +
+                                        "<input type='hidden' name='from' value='profilo'>" +
+                                        "<input type='image' src='img/rimuovi.png' width='25px' height='auto' alt='Invia il form'>" +
+                                        "</form>" +
+                                        "</td>");
                                 for(int i=2;i<rs.getMetaData().getColumnCount();i++){
-                                    mazzo = mazzo.concat("<td colspan=\"2\" class=\"deck-name\">" +
+                                    mazzo = mazzo.concat("<td class=\"deck-name\">" +
                                             rs.getString(i) +
                                             "</td>");
                                 }
