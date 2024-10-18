@@ -1,6 +1,6 @@
 # todo list
-- [ ] home
-- [ ] carte
+- [x] home
+- [x] carte
 - [ ] mazzi
 - [ ] insertToDeck
 - [ ] insertToCollezione

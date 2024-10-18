@@ -1,0 +1,13 @@
+RewriteEngine On
+
+   # Imposta la base del rewrite su /swudb
+   RewriteBase /swudb
+
+   # Regola per reindirizzare tutto a /swudb se non inizia già con /swudb
+   RewriteCond %{REQUEST_URI} !^/swudb
+   RewriteRule ^(.*)$ /swudb/$1 [L,R=301]
+
+   # Le tue regole esistenti
+   RewriteCond %{REQUEST_FILENAME} !-d
+   RewriteCond %{REQUEST_FILENAME}\.php -f
+   RewriteRule ^(.*)$ $1.php [L]
