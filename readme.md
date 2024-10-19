@@ -5,7 +5,7 @@
 - [ ] insertToDeck
 - [ ] insertToCollezione
 - [ ] uploadJsonDeck
-- [ ] logIn
+- [x] logIn
 - [ ] signIn
 - [ ] logOut
 - [ ] rimuoviCarta
